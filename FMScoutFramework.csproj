@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E74FE82A-2E12-4C51-AD24-7D2DDE5C36A6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FMScoutFramework</RootNamespace>
+    <AssemblyName>FMScoutFramework</AssemblyName>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;MAC;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Defines\Versions\Steam_14_3_1_Windows.cs" />
+    <Compile Include="FMCore.cs" />
+    <Compile Include="Attributes\MemoryAddressAttribute.cs" />
+    <Compile Include="Converters\DateConverter.cs" />
+    <Compile Include="Defines\FMProcess.cs" />
+    <Compile Include="Defines\Offsets\ClubFinancesOffsets.cs" />
+    <Compile Include="Defines\Offsets\ClubOffsets.cs" />
+    <Compile Include="Defines\Offsets\NationOffsets.cs" />
+    <Compile Include="Defines\Offsets\PlayerOffsets.cs" />
+    <Compile Include="Defines\Offsets\PlayerStatsOffsets.cs" />
+    <Compile Include="Defines\Offsets\TeamOffsets.cs" />
+    <Compile Include="Defines\Versions\IPersonVersionOffsets.cs" />
+    <Compile Include="Defines\Versions\IVersion.cs" />
+    <Compile Include="Defines\Versions\IVersionMemoryAddresses.cs" />
+    <Compile Include="Defines\Versions\IVersionPersonEnumPointers.cs" />
+    <Compile Include="Defines\Versions\Steam_14_3_0_Linux.cs" />
+    <Compile Include="Entities\Global.cs" />
+    <Compile Include="Entities\Ingame\BaseObject.cs" />
+    <Compile Include="Entities\Ingame\City.cs" />
+    <Compile Include="Entities\Ingame\Club.cs" />
+    <Compile Include="Entities\Ingame\ClubFinances.cs" />
+    <Compile Include="Entities\Ingame\Continent.cs" />
+    <Compile Include="Entities\Ingame\Nation.cs" />
+    <Compile Include="Entities\Ingame\Player.cs" />
+    <Compile Include="Entities\Ingame\PlayerStaff.cs" />
+    <Compile Include="Entities\Ingame\PlayerStats.cs" />
+    <Compile Include="Entities\Ingame\Staff.cs" />
+    <Compile Include="Entities\Ingame\Team.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\BitwiseOperations.cs" />
+    <Compile Include="VirtualMemory\ProcessMemoryAPI.cs" />
+    <Compile Include="VirtualMemory\Managers\GameManager.cs" />
+    <Compile Include="VirtualMemory\Managers\ObjectManager.cs" />
+    <Compile Include="VirtualMemory\Managers\ProcessManager.cs" />
+    <Compile Include="VirtualMemory\Managers\PropertyInvoker.cs" />
+    <Compile Include="Defines\Versions\Steam_14_3_0_Windows.cs" />
+    <Compile Include="Defines\Offsets\InjuryOffsets.cs" />
+    <Compile Include="Entities\Ingame\Injury.cs" />
+    <Compile Include="Entities\Ingame\PersonAttributes.cs" />
+    <Compile Include="Defines\Offsets\PersonAttributesOffsets.cs" />
+    <Compile Include="Defines\Offsets\ContractOffsets.cs" />
+    <Compile Include="Entities\Ingame\Contract.cs" />
+    <Compile Include="Defines\Versions\Steam_14_3_0_Mac.cs" />
+    <Compile Include="Defines\Offsets\ContractClausesOffsets.cs" />
+    <Compile Include="Entities\Ingame\ContractClauses.cs" />
+    <Compile Include="Defines\Offsets\ContractBonusOffsets.cs" />
+    <Compile Include="Entities\Ingame\ContractBonus.cs" />
+    <Compile Include="Defines\Offsets\StaffOffsets.cs" />
+    <Compile Include="Defines\Versions\Steam_14_3_1_Linux.cs" />
+    <Compile Include="Defines\Versions\Steam_14_3_1_Mac.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="FMScoutFramework.csproj" />
+    <None Include="FMScoutFramework.sln" />
+    <None Include="README.md" />
+    <None Include="app.config" />
+    <None Include="VirtualMemory\ExternalSharedLibraries\libprocessmemoryapi.dylib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="VirtualMemory\ExternalSharedLibraries\" />
+  </ItemGroup>
+</Project>
