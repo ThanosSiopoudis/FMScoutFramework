@@ -1,3 +1,6 @@
 [submodule "ExternalLibraries/LinuxPMA"]
 	path = ExternalLibraries/LinuxPMA
 	url = https://ThanosSiopoudis@github.com/ThanosSiopoudis/LinuxProcessMemoryAPI.git
+[submodule "ExternalLibraries/MacPMA"]
+	path = ExternalLibraries/MacPMA
+	url = https://ThanosSiopoudis@github.com/ThanosSiopoudis/MacProcessMemoryAPI.git
