@@ -1,3 +1,0 @@
-[submodule "ExternalLibraries"]
-	path = ExternalLibraries/LinuxPMA
-	url = https://ThanosSiopoudis@github.com/ThanosSiopoudis/LinuxProcessMemoryAPI.git
