@@ -35,7 +35,42 @@ You will need [MonoDevelop](http://monodevelop.com) if you develop your applicat
 11. In the `Conditional Compilation Symbols` textbox, enter `WINDOWS;`
 12. You are now ready to start developing your app. Look further down for code
 
-Example code here for each OS
+##### Example Code
+
+The following code is an example for a simple Windows Forms application and another for Mono
+First, include the necessary framework headers:
+```csharp
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using FMScoutFramework.Core;
+using FMScoutFramework.Core.Entities.InGame;
+```
+
+In your class, create a new public variable:
+```csharp
+public FMCore fmCore = new FMCore (FMScoutFramework.Core.Entities.DatabaseModeEnum.Realtime);
+```
+
+First, create a new method that will be asynchronously called by the framework when loading is finished:
+```csharp
+public void GameLoaded() {
+  Debug.WriteLine("Loading Finished");
+}
+```
+
+Then, in your action callback method (from a button, or a menu for example) use the following code:
+```csharp
+fmcore.GameLoaded += new Action(GameLoaded);
+new Action(() => fmCore.LoadData()).BeginInvoke((s) => { }, null);
+```
+
+That's it! You can now query the data, with simple Linq queries! Amazing, eh? Here's an example, to look for "Bar":
+```csharp
+var clubs = (from c in fmCore.Clubs
+				     where c.Name.Contains ("Bar")
+			       select c).Take (100).ToList ();
+```
 
 ## Deploying
 
