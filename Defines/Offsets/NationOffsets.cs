@@ -31,6 +31,10 @@ namespace FMScoutFramework.Core.Offsets
                 }
             }
         }
+
+        public const short ShortName = 0x58;
+        public const short ThreeLetterName = 0x60;
+        public const short Nationality = 0x64;
 	}
 }
 

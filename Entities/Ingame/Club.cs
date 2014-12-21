@@ -58,6 +58,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
+        /*
 		private int SixLetterNameAddress {
 			get {
 				return PropertyInvoker.Get<Int32> (ClubOffsets.SixLetterName, OriginalBytes, MemoryAddress, DatabaseMode);
@@ -68,7 +69,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 			get {
 				return PropertyInvoker.GetString (0x0, 0, OriginalBytes, this.SixLetterNameAddress, DatabaseMode);
 			}
-		}
+		} */
 
 		private int NationAddress {
 			get {

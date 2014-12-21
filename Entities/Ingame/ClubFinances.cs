@@ -10,12 +10,17 @@ namespace FMScoutFramework.Core.Entities.InGame
 {
 	public class ClubFinances : BaseObject
 	{
+        public ClubFinancesOffsets ClubFinancesOffsets;
 		public ClubFinances (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)
-		{	}
+		{
+            this.ClubFinancesOffsets = new ClubFinancesOffsets(version);
+        }
 		public ClubFinances (int memoryAddress, ArraySegment<byte> originalBytes, IVersion version) 
 			: base(memoryAddress, originalBytes, version)
-		{	}
+		{
+            this.ClubFinancesOffsets = new ClubFinancesOffsets(version);
+        }
 
 		public int Balance {
 			get {

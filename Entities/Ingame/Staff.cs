@@ -33,7 +33,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 
 		public string Fullname {
 			get {
-				return PropertyInvoker.GetString(StaffOffsets.Fullname, 0x0, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.GetString(StaffOffsets.CommonName, 0x0, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
