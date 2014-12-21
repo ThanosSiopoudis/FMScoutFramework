@@ -1,9 +1,17 @@
 ﻿using System;
+using FMScoutFramework.Core.Entities.GameVersions;
 
 namespace FMScoutFramework.Core.Offsets
 {
 	public sealed class TeamOffsets
 	{
+        public IVersion Version;
+
+        public TeamOffsets(IVersion version)
+        {
+            this.Version = version;
+        }
+
 		public const short RowID				= 0x4;
 		public const short ID					= 0x8;
 		public const short Club					= 0x10;
