@@ -44,8 +44,8 @@
     <Compile Include="Defines\Offsets\Sub-Entities\ClubFinancesOffsets.cs" />
     <Compile Include="Defines\Offsets\ClubOffsets.cs" />
     <Compile Include="Defines\Offsets\NationOffsets.cs" />
-    <Compile Include="Defines\Offsets\PlayerOffsets.cs" />
-    <Compile Include="Defines\Offsets\PlayerStatsOffsets.cs" />
+    <Compile Include="Defines\Offsets\People\PlayerOffsets.cs" />
+    <Compile Include="Defines\Offsets\People\Sub-Entities\PlayerStatsOffsets.cs" />
     <Compile Include="Defines\Offsets\TeamOffsets.cs" />
     <Compile Include="Defines\Versions\IPersonVersionOffsets.cs" />
     <Compile Include="Defines\Versions\IVersion.cs" />
@@ -75,15 +75,15 @@
     <Compile Include="Defines\Offsets\InjuryOffsets.cs" />
     <Compile Include="Entities\Ingame\Injury.cs" />
     <Compile Include="Entities\Ingame\PersonAttributes.cs" />
-    <Compile Include="Defines\Offsets\PersonAttributesOffsets.cs" />
-    <Compile Include="Defines\Offsets\ContractOffsets.cs" />
+    <Compile Include="Defines\Offsets\People\Sub-Entities\PersonAttributesOffsets.cs" />
+    <Compile Include="Defines\Offsets\People\Sub-Entities\ContractOffsets.cs" />
     <Compile Include="Entities\Ingame\Contract.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_0_Mac.cs" />
-    <Compile Include="Defines\Offsets\ContractClausesOffsets.cs" />
+    <Compile Include="Defines\Offsets\People\Sub-Entities\ContractClausesOffsets.cs" />
     <Compile Include="Entities\Ingame\ContractClauses.cs" />
-    <Compile Include="Defines\Offsets\ContractBonusOffsets.cs" />
+    <Compile Include="Defines\Offsets\People\Sub-Entities\ContractBonusOffsets.cs" />
     <Compile Include="Entities\Ingame\ContractBonus.cs" />
-    <Compile Include="Defines\Offsets\StaffOffsets.cs" />
+    <Compile Include="Defines\Offsets\People\StaffOffsets.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Linux.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Mac.cs" />
   </ItemGroup>
