@@ -15,7 +15,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;MAC;</DefineConstants>
+    <DefineConstants>DEBUG;WINDOWS;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -35,12 +35,13 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Defines\Versions\Steam_15_2_1_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Windows.cs" />
     <Compile Include="FMCore.cs" />
     <Compile Include="Attributes\MemoryAddressAttribute.cs" />
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Defines\FMProcess.cs" />
-    <Compile Include="Defines\Offsets\ClubFinancesOffsets.cs" />
+    <Compile Include="Defines\Offsets\Sub-Entities\ClubFinancesOffsets.cs" />
     <Compile Include="Defines\Offsets\ClubOffsets.cs" />
     <Compile Include="Defines\Offsets\NationOffsets.cs" />
     <Compile Include="Defines\Offsets\PlayerOffsets.cs" />
@@ -94,7 +95,5 @@
     <None Include="app.config" />
     <None Include="VirtualMemory\ExternalSharedLibraries\libprocessmemoryapi.dylib" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="VirtualMemory\ExternalSharedLibraries\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

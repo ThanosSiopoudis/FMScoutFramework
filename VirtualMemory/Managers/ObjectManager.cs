@@ -236,14 +236,21 @@ namespace FMScoutFramework.Core.Managers
 
             // On windows, we have ASLR, so get the main pointer from the static offset
             #if WINDOWS
-            int memoryAddress = ProcessManager.ReadInt32(ProcessManager.fmProcess.BaseAddress + compiledObjectPointer.Invoke(GameManager.Version.MemoryAddresses));
+            int memoryAddress = ProcessManager.ReadInt32(ProcessManager.fmProcess.BaseAddress + GameManager.Version.MemoryAddresses.MainAddress);
             memoryAddress = ProcessManager.ReadInt32(memoryAddress);
             #endif
 
-
-			int xorValueOne = ProcessManager.ReadInt32 (memoryAddress + memoryAttribute.BytesToSkip + 0x4);
-			int xorValueTwo = ProcessManager.ReadInt32 (memoryAddress + memoryAttribute.BytesToSkip);
-			memoryAddress = xorValueTwo ^ xorValueOne;
+            if (GameManager.Version.MainVersionNumber == "14")
+            {
+                int xorValueOne = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip + 0x4);
+                int xorValueTwo = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip);
+                memoryAddress = xorValueTwo ^ xorValueOne;
+            }
+            else
+            {
+                memoryAddress = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip);
+            }
+			
 			memoryAddress = ProcessManager.ReadInt32 (memoryAddress + GameManager.Version.MemoryAddresses.XorDistance);
 
 			int numberOfObjects = ProcessManager.ReadArrayLength (memoryAddress);

@@ -3,6 +3,7 @@
 	public interface IVersion
 	{
 		string Description { get; }
+        string MainVersionNumber { get; }
 		IVersionMemoryAddresses MemoryAddresses { get; }
 		IVersionPersonEnumPointers PersonEnum { get; }
 		IPersonVersionOffsets PersonOffsets { get; }

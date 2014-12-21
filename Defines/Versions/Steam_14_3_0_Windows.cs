@@ -24,6 +24,11 @@ namespace FMScoutFramework.Core.Entities.GameVersions
 			get { return "14.3.0 Steam"; }
 		}
 
+        public string MainVersionNumber
+        {
+            get { return "14"; }
+        }
+
 		public bool SupportsProcess(FMProcess process, byte[] context)
 		{
 			#if LINUX || MAC
