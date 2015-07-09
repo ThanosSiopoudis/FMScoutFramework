@@ -203,7 +203,7 @@ namespace FMScoutFramework.Core.Managers
                         int countries = TryGetPointerObjects(i, 0x64, fmProcess);
                         int persons = TryGetPointerObjects(i, 0x6C, fmProcess);
 
-                        if (continents == 7 && countries == 240 && (
+                        if (continents == 7 && countries > 230 && countries < 250 && (
                             cities > 0 && clubs > 0 && leagues > 0 && stadiums > 0 &&
                             teams > 0 && persons > 0
                             ))
@@ -221,19 +221,34 @@ namespace FMScoutFramework.Core.Managers
         {
 			#if WINDOWS
             int memoryAddress = ProcessManager.ReadInt32(address);
+            Debug.WriteLine("Base 0x{0:X} -> 0x{1:X}", address, memoryAddress);
             if (memoryAddress > fmProcess.BaseAddress && memoryAddress < fmProcess.EndPoint)
             {
                 memoryAddress = ProcessManager.ReadInt32(memoryAddress);
                 if (memoryAddress < fmProcess.BaseAddress || memoryAddress > fmProcess.EndPoint)
                     return 0;
-                int xorValueOne = ProcessManager.ReadInt32(memoryAddress + offset + 0x4);
-                int xorValueTwo = ProcessManager.ReadInt32(memoryAddress + offset);
-                memoryAddress = xorValueTwo ^ xorValueOne;
+
+                string[] splitVersion = fmProcess.VersionDescription.Split('.');
+                if (splitVersion[0] == "14")
+                {
+                    int xorValueOne = ProcessManager.ReadInt32(memoryAddress + offset + 0x4);
+                    int xorValueTwo = ProcessManager.ReadInt32(memoryAddress + offset);
+                    memoryAddress = xorValueTwo ^ xorValueOne;
+                    if (memoryAddress < fmProcess.BaseAddress || memoryAddress > fmProcess.EndPoint)
+                        return 0;
+                    memoryAddress = ProcessManager.ReadInt32(memoryAddress + 0x54);
+                }
+                else
+                {
+                    memoryAddress = ProcessManager.ReadInt32(memoryAddress + offset);
+                    if (memoryAddress < fmProcess.BaseAddress || memoryAddress > fmProcess.EndPoint)
+                        return 0;
+                    memoryAddress = ProcessManager.ReadInt32(memoryAddress + 0x40);
+                }
+                
                 if (memoryAddress < fmProcess.BaseAddress || memoryAddress > fmProcess.EndPoint)
                     return 0;
-                memoryAddress = ProcessManager.ReadInt32(memoryAddress + 0x54);
-                if (memoryAddress < fmProcess.BaseAddress || memoryAddress > fmProcess.EndPoint)
-                    return 0;
+
                 int numberOfObjects = ProcessManager.ReadArrayLength(memoryAddress);
                 return numberOfObjects;
             }
