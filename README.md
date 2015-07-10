@@ -72,23 +72,17 @@ var clubs = (from c in fmCore.Clubs
 			       select c).Take (100).ToList ();
 ```
 
-## Deploying
-
-### _How to deploy_
-
-## Troubleshooting & Useful Tools
-
-_Examples of common tasks_
-
-> e.g.
-> 
-> - How to make curl requests while authenticated via oauth.
-> - How to monitor background jobs.
-> - How to run the app through a proxy.
+## Currently pending
+* Add/Verify entity offsets for 15.3.2 Windows
+* Add support for 15.3.2 Mac
+* Add support for 15.3.2 Linux
+* Add a bunch of properties for the entities already implemented
+* Add a LOT of entities and properties for objects we have their main addresses for (look in 15.3.2 Windows version file)
 
 ## Contributing changes
-
-- Please open github issues
+We need more devs and support! Imagine all the tools you could create for FM2014/FM2015/FM2016(??) if everything was already implemented!
+* Fork the project, make/test your changes and send a Pull Request!
+* Alternatively, bug reporting is vital! Use the Github's Issues page to do that!
 
 ## License
 
