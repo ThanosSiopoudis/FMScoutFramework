@@ -105,7 +105,7 @@ namespace FMScoutFramework.Core.Managers
 							// Dump it
 							if (unknownAddresses.IndexOf (type) < 0 && type > 0x0) {
 								int personID = ProcessManager.ReadInt32 (buffer, memoryAddress + 0x8 - lowestPointerInBatch);
-								Debug.WriteLine ("Found Unknown Person Type: {0:X} @ 0x{1:X} wit ID: {2}", type, memoryAddress, personID);
+								Debug.WriteLine ("Found Unknown Person Type: {0:X} @ 0x{1:X} with ID: {2}", type, memoryAddress, personID);
 								unknownAddresses.Add (type);
 							}
 						}
