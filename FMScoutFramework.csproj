@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Defines\Versions\Steam_15_2_1_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Windows.cs" />
+    <Compile Include="Defines\Versions\Steam_15_3_2_Windows.cs" />
     <Compile Include="FMCore.cs" />
     <Compile Include="Attributes\MemoryAddressAttribute.cs" />
     <Compile Include="Converters\DateConverter.cs" />
