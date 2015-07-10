@@ -192,16 +192,32 @@ namespace FMScoutFramework.Core.Managers
                     int i;
                     // Try to find info about the version
                     // Lookup the objects in the memory
-                    for (i = fmProcess.BaseAddress; i < fmProcess.EndPoint; i += 4)
+                    for (i = (fmProcess.BaseAddress + 0x1A8484E); i < fmProcess.EndPoint; i += 4)
                     {
-                        int cities = TryGetPointerObjects(i, 0x14, fmProcess);
-                        int clubs = TryGetPointerObjects(i, 0x1C, fmProcess);
-                        int leagues = TryGetPointerObjects(i, 0x24, fmProcess);
-                        int stadiums = TryGetPointerObjects(i, 0x8C, fmProcess);
-                        int teams = TryGetPointerObjects(i, 0xA4, fmProcess);
-                        int continents = TryGetPointerObjects(i, 0x2C, fmProcess);
-                        int countries = TryGetPointerObjects(i, 0x64, fmProcess);
-                        int persons = TryGetPointerObjects(i, 0x6C, fmProcess);
+                        int cities, clubs, leagues, stadiums, teams, continents, countries, persons;
+                        string[] splitVersion = fmProcess.VersionDescription.Split('.');
+                        if (splitVersion[0] == "14") {
+                            cities = TryGetPointerObjects(i, 0x14, fmProcess);
+                            clubs = TryGetPointerObjects(i, 0x1C, fmProcess);
+                            leagues = TryGetPointerObjects(i, 0x24, fmProcess);
+                            stadiums = TryGetPointerObjects(i, 0x8C, fmProcess);
+                            teams = TryGetPointerObjects(i, 0xA4, fmProcess);
+                            continents = TryGetPointerObjects(i, 0x2C, fmProcess);
+                            countries = TryGetPointerObjects(i, 0x64, fmProcess);
+                            persons = TryGetPointerObjects(i, 0x6C, fmProcess);
+                        }
+                        else
+                        {
+                            cities = TryGetPointerObjects(i, 0x10, fmProcess);
+                            clubs = TryGetPointerObjects(i, 0x14, fmProcess);
+                            leagues = TryGetPointerObjects(i, 0x18, fmProcess);
+                            stadiums = TryGetPointerObjects(i, 0x4C, fmProcess);
+                            teams = TryGetPointerObjects(i, 0x58, fmProcess);
+                            continents = TryGetPointerObjects(i, 0x1C, fmProcess);
+                            countries = TryGetPointerObjects(i, 0x38, fmProcess);
+                            persons = TryGetPointerObjects(i, 0x3C, fmProcess);
+                        }
+
 
                         if (continents == 7 && countries > 230 && countries < 250 && (
                             cities > 0 && clubs > 0 && leagues > 0 && stadiums > 0 &&
