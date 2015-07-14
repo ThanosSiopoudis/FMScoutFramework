@@ -16,14 +16,7 @@ namespace FMScoutFramework.Core.Offsets
         {
             get
             {
-                if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-                    Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-                    Version.GetType() == typeof(Steam_14_3_1_Linux))
-                    return 0x88;
-                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-                    return 0x98;
-                else
-                    return 0x90;
+                return 0x117;
             }
         }
 
@@ -69,14 +62,7 @@ namespace FMScoutFramework.Core.Offsets
         {
             get
             {
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux))
-                    return 0x100;
-                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-                    return 0x10C;
-                else
-                    return 0x108;
+                return 0xCC;
             }
         }
 
@@ -189,14 +175,7 @@ namespace FMScoutFramework.Core.Offsets
         {
             get
             {
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux))
-                    return 0x134;
-                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-                    return 0x140;
-                else
-                    return 0x13C;
+                return 0xFC;
             }
         }
 
@@ -260,21 +239,6 @@ namespace FMScoutFramework.Core.Offsets
             }
         }
 
-        public short Fullname
-        {
-            get
-            {
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux))
-                    return 0x154;
-                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-                    return 0x164;
-                else
-                    return 0x17C;
-            }
-        }
-
         public short Nickname
         {
             get
@@ -290,36 +254,7 @@ namespace FMScoutFramework.Core.Offsets
             }
         }
 
-        public short Firstname
-        {
-            get
-            {
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux))
-                    return 0x15C;
-                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-                    return 0x16C;
-                else
-                    return 0x184;
-            }
-        }
-
-        public short Lastname
-        {
-            get
-            {
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux))
-                    return 0x160;
-                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-                    return 0x170;
-                else
-                    return 0x188;
-            }
-        }
-
+      
         public short CityOfBirth
         {
             get
@@ -452,36 +387,6 @@ namespace FMScoutFramework.Core.Offsets
                     return 0x217;
                 else
                     return 0x243;
-            }
-        }
-
-        public short RowID
-        {
-            get
-            {
-                if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-                    Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-                    Version.GetType() == typeof(Steam_14_3_1_Linux))
-                    return 0x210;
-                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-                    return 0x220;
-                else
-                    return 0x154;
-            }
-        }
-
-        public short ID
-        {
-            get
-            {
-                if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-                    Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-                    Version.GetType() == typeof(Steam_14_3_1_Linux))
-                    return 0x214;
-                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-                    return 0x224;
-                else
-                    return 0x158;
             }
         }
 	}

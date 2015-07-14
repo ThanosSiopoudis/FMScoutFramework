@@ -185,7 +185,7 @@ namespace FMScoutFramework.Core.Entities.GameVersions
         /// </summary>
         public class PersonVersionOffsets : IPersonVersionOffsets
         {
-            public int Player { get { return -0x208; } }
+            public int Player { get { return -0x158; } }
             public int Staff { get { return -0x84; } }
             public int NonPlayer { get { return 0x0; } }
             public int HumanManager { get { return -0x44; } }

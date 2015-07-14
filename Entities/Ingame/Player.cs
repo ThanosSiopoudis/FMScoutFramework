@@ -7,7 +7,7 @@ using FMScoutFramework.Core.Utilities;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
-	public class Player : BaseObject
+	public class Player : Person
 	{
         public PlayerOffsets PlayerOffsets;
 		public Player (int memoryAddress, IVersion version) 
@@ -21,17 +21,13 @@ namespace FMScoutFramework.Core.Entities.InGame
             this.PlayerOffsets = new PlayerOffsets(version);
         }
 
-		public int RowID {
-			get {
-				return PropertyInvoker.Get<Int32>(PlayerOffsets.RowID, OriginalBytes, MemoryAddress, DatabaseMode);
-			}
-		}
-
-		public int ID {
-			get {
-				return PropertyInvoker.Get<Int32>(PlayerOffsets.ID, OriginalBytes, MemoryAddress, DatabaseMode);
-			}
-		}
+        public override int PersonMemoryAddress
+        {
+            get
+            {
+                return MemoryAddress + Math.Abs(Version.PersonOffsets.Player);
+            }
+        }
 
 		public PlayerStats PlayerStats {
 			get {
@@ -151,10 +147,23 @@ namespace FMScoutFramework.Core.Entities.InGame
 
 						return (ushort)encryptedVal;
 					} catch {
-						return 0;
+						return 4;
 					}
-				} else {
-					return 0;
+				} 
+                else if (Version.GetType() == typeof(Steam_15_3_2_Windows))
+                {
+                    int rotateAmount = ((MemoryAddress + PlayerOffsets.CA) & 15);
+                    uint encryptedVal = PropertyInvoker.Get<ushort>(PlayerOffsets.CA, OriginalBytes, MemoryAddress, DatabaseMode);
+                    encryptedVal = BitwiseOperations.ror_short(encryptedVal, 7);
+                    encryptedVal = (ushort)~encryptedVal;
+                    encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
+                    encryptedVal = (ushort)~encryptedVal;
+                    encryptedVal = BitwiseOperations.ror_short(encryptedVal, 5);
+
+                    return (ushort)encryptedVal;
+                }
+                else {
+					return 2;
 				}
 			}
 		}
@@ -212,29 +221,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
-		public string Fullname {
-			get {
-				return PropertyInvoker.GetString (PlayerOffsets.Fullname, 0, OriginalBytes, MemoryAddress, DatabaseMode);
-			}
-		}
 
-		public string Nickname {
-			get {
-				return PropertyInvoker.GetString(PlayerOffsets.Nickname, 0, OriginalBytes, MemoryAddress, DatabaseMode);
-			}
-		}
-
-		public string Firstname {
-			get {
-				return PropertyInvoker.GetString(PlayerOffsets.Firstname, 0xC, OriginalBytes, MemoryAddress, DatabaseMode);
-			}
-		}
-
-		public string Lastname {
-			get {
-				return PropertyInvoker.GetString(PlayerOffsets.Lastname, 0xC, OriginalBytes, MemoryAddress, DatabaseMode);
-			}
-		}
 
 		public Nation Nationality {
 			get {
