@@ -1,3 +1,5 @@
 language: csharp
-solution: FMScoutFramework.sln
 sudo: false
+
+script:
+  - xbuild FMScoutFramework.sln /p:"Configuration=Release;DefineConstants=LINUX;"
