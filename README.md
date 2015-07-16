@@ -1,4 +1,5 @@
-# FMScoutFramework
+# FMScoutFramework  
+[![Build Status](https://travis-ci.org/ThanosSiopoudis/FMScoutFramework.svg)](https://travis-ci.org/ThanosSiopoudis/FMScoutFramework)
 
 FMScoutFramework is a C#.NET/Mono Framework that enables you to create your own assistant tools / editors for Football Manager. It supports both FM2014 and FM2015
 
