@@ -1,2 +1,3 @@
 language: csharp
 solution: FMScoutFramework.sln
+sudo: false
