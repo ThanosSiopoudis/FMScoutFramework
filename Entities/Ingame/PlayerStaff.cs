@@ -3,7 +3,7 @@ using FMScoutFramework.Core.Entities.GameVersions;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
-	public class PlayerStaff : BaseObject
+	public class PlayerStaff : Person
 	{
 		public PlayerStaff (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)
