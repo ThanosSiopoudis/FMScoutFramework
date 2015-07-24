@@ -16,7 +16,7 @@ namespace FMScoutFramework.Core.Offsets
         {
             get
             {
-                return 0x117;
+                return 0x108;
             }
         }
 
@@ -189,6 +189,10 @@ namespace FMScoutFramework.Core.Offsets
                     return 0x136;
                 else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
                     return 0x142;
+                else if (Version.GetType() == typeof(Steam_15_3_2_Windows))
+                {
+                    return 0xFE;
+                }
                 else
                     return 0x13E;
             }
@@ -300,20 +304,7 @@ namespace FMScoutFramework.Core.Offsets
             }
         }
 
-        public short Contract
-        {
-            get
-            {
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux))
-                    return 0x198;
-                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-                    return 0x1A8;
-                else
-                    return 0x1C4;
-            }
-        }
+       
 
         public short Club
         {

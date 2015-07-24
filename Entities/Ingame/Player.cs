@@ -187,7 +187,28 @@ namespace FMScoutFramework.Core.Entities.InGame
 					} catch {
 						return 0;
 					}
-				} else {
+				}
+				else if (Version.GetType() == typeof(Steam_15_3_2_Windows))
+				{
+					try
+					{
+						int rotateAmount = ((MemoryAddress + PlayerOffsets.PA) & 15);
+						ushort encryptedVal = PropertyInvoker.Get<ushort>(PlayerOffsets.PA, OriginalBytes, MemoryAddress, DatabaseMode);
+
+						encryptedVal = (ushort)~encryptedVal;
+						encryptedVal = (ushort)BitwiseOperations.rol_short((uint)encryptedVal, 6);
+						encryptedVal = (ushort)(encryptedVal ^ 35380);
+						encryptedVal = (ushort)~encryptedVal;
+						encryptedVal = (ushort)BitwiseOperations.ror_short((uint)encryptedVal, rotateAmount);
+						return encryptedVal;
+					}
+					catch
+					{
+						return 0;
+					}
+				}
+				else
+				{
 					return 0;
 				}
 			}
@@ -204,25 +225,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 				return PropertyInvoker.Get<ushort> (PlayerOffsets.Height, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
-
-		public DateTime DateOfBirth {
-			get {
-				return PropertyInvoker.Get<DateTime> (PlayerOffsets.DateOfBirth, OriginalBytes, MemoryAddress, DatabaseMode);
-			}
-		}
-
-		public int Age {
-			get {
-				DateTime now = DateTime.Today;
-				int age = now.Year - DateOfBirth.Year;
-				if (DateOfBirth > now.AddYears (-age))
-					age--;
-				return age;
-			}
-		}
-
-
-
+        
 		public Nation Nationality {
 			get {
 				return PropertyInvoker.GetPointer<Nation> (PlayerOffsets.Nationality, OriginalBytes, MemoryAddress, DatabaseMode, Version);
@@ -236,11 +239,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
-		public Contract Contract {
-			get {
-				return PropertyInvoker.GetPointer<Contract> (PlayerOffsets.Contract, OriginalBytes, MemoryAddress, DatabaseMode, Version);
-			}
-		}
+		
 
 		public Club Club {
 			get {

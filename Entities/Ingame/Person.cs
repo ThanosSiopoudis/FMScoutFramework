@@ -69,6 +69,34 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
+		public DateTime DateOfBirth
+		{
+			get
+			{
+				return PropertyInvoker.Get<DateTime>(PersonOffsets.DateOfBirth, OriginalBytes, PersonMemoryAddress, DatabaseMode);
+			}
+		}
+		public int Age
+		{
+			get
+			{
+				DateTime now = ProcessManager.ReadDateTime(ProcessManager.fmProcess.BaseAddress + Version.MemoryAddresses.CurrentDateTime);
+				int age = now.Year - DateOfBirth.Year;
+				if (DateOfBirth > now.AddYears(-age))
+					age--;
+				return age;
+			}
+		}
+		public Contract Contract
+		{
+			get
+			{
+				return PropertyInvoker.GetPointer<Contract>(PersonOffsets.Contract, OriginalBytes, PersonMemoryAddress, DatabaseMode, Version);
+			}
+		}
+
+
+
 		public override string ToString () {
 			return Firstname + " " + Lastname;
 		}

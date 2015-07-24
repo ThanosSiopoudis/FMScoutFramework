@@ -16,91 +16,91 @@ namespace FMScoutFramework.Core.Entities.InGame
 
 		public byte Goalkeeper {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.GoalKeeper, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.GoalKeeper, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte Sweeper {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.Sweeper, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.Sweeper, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte DefenderLeft {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.DefenderLeft, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.DefenderLeft, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte DefenderCenter {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.DefenderCenter, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.DefenderCenter, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte DefenderRight {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.DefenderRight, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.DefenderRight, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte DefensiveMidfielder {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.DefensiveMidfielder, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.DefensiveMidfielder, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte MidfielderLeft {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.MidfielderLeft, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.MidfielderLeft, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte MidfielderCenter {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.MidfielderCenter, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.MidfielderCenter, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte MidfielderRight {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.MidfielderRight, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.MidfielderRight, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte AttackingMidfielderLeft {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.AttackingMidfielderLeft, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.AttackingMidfielderLeft, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte AttackingMidfielderCenter {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.AttackingMidfielderCenter, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.AttackingMidfielderCenter, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte AttackingMidfielderRight {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.AttackingMidfielderRight, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.AttackingMidfielderRight, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte Striker {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.Striker, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.Striker, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte WingbackLeft {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.WingbackLeft, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.WingbackLeft, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public byte WingbackRight {
 			get {
-				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.WingbackRight, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<byte>(PlayerStatsOffsets.WingbackRight, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 

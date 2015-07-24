@@ -70,6 +70,28 @@ namespace FMScoutFramework.Core.Offsets
                 return 0x08;
             }
         }
+
+        public int DateOfBirth
+        {
+            get
+            {
+                return 0x2C;
+            }
+        }
+		public short Contract
+		{
+			get
+			{
+				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
+					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
+					Version.GetType() == typeof(Steam_14_3_1_Linux))
+					return 0x198;
+				else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
+					return 0x1A8;
+				else
+					return 0x74;
+			}
+		}
 	}
 }
 
