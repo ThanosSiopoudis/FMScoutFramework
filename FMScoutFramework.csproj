@@ -33,10 +33,12 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Defines\Offsets\People\PersonOffsets.cs" />
     <Compile Include="Defines\Offsets\Sub-Entities\RivalNationOffsets.cs" />
     <Compile Include="Defines\Versions\Steam_15_2_1_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_15_3_2_Windows.cs" />
+    <Compile Include="Entities\Ingame\Person.cs" />
     <Compile Include="Entities\Ingame\Sub-Entities\RivalNation.cs" />
     <Compile Include="FMCore.cs" />
     <Compile Include="Attributes\MemoryAddressAttribute.cs" />

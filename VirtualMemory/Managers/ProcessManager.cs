@@ -164,6 +164,7 @@ namespace FMScoutFramework.Core.Managers
 			byte[] buffer = ReadProcessMemory (address, 2);
 			return ReadUInt16 (buffer, 0);
 		}
+        
 
 		public static DateTime ReadDateTime(int address)
 		{
@@ -190,13 +191,14 @@ namespace FMScoutFramework.Core.Managers
 		{
 			string cacheKey = string.Format ("{0}.{1}.{2}.{3}", currentAddress, addBufferIndex ?? -1, offset, isRead);
 			if (!readStringCache.ContainsKey (cacheKey)) {
-				if (!isRead)
-					currentAddress = ProcessManager.ReadInt32 (currentAddress);
+                if (!isRead)
+                {
+                    currentAddress = ProcessManager.ReadInt32(currentAddress);
+                }
+                
+                currentAddress = ProcessManager.ReadInt32(currentAddress + (int)addBufferIndex);
 
-				if (addBufferIndex > 0)
-					currentAddress = ProcessManager.ReadInt32 (currentAddress + (int)addBufferIndex);
-
-				string str = "";
+			    string str = "";
 
 				// Skip the first byte
 				currentAddress += 0x1;
