@@ -20,24 +20,27 @@ namespace FMScoutFramework.Core.Managers
 			set { fmProcess = value; }
 		}
 
-		#if WINDOWS
-		public static int GetProcessEndPoint(IntPtr process) {
+#if WINDOWS
+		public static int GetProcessEndPoint(IntPtr process)
+		{
 			int bytesRead = 0;
 			int memoryAddress = 0x6fffffff;
 			int num3 = 0x1000000;
-			for (int i = 1; i <= 7; i++) {
-				ReadProcessMemory (process, memoryAddress, 1, out bytesRead);
-				while (bytesRead == 0) {
+			for (int i = 1; i <= 7; i++)
+			{
+				ReadProcessMemory(process, memoryAddress, 1, out bytesRead);
+				while (bytesRead == 0)
+				{
 					memoryAddress -= num3;
-					ReadProcessMemory (process, memoryAddress, 1, out bytesRead);
+					ReadProcessMemory(process, memoryAddress, 1, out bytesRead);
 				}
 				memoryAddress += num3;
 				num3 /= 0x10;
 			}
 			return memoryAddress;
 		}
-		#endif
-		#if MAC
+#endif
+#if MAC
 		public static int GetProcessEndPoint(int pid) {
 			int memoryAddress = 0x6FFFFFFF;
 			int num3 = 0x10000000;
@@ -53,39 +56,52 @@ namespace FMScoutFramework.Core.Managers
 			}
 			return memoryAddress;
 		}
-		#endif
+#endif
+
+		public static byte[] GetProcessStringBytes(string str)
+		{
+			List<byte> bytes = new List<byte>();
+			foreach (var ch in str.ToCharArray())
+			{
+				byte chNum = (byte)ch;
+				bytes.Add(chNum);
+				bytes.Add(0);
+			}
+			return bytes.ToArray();
+		}
 		#region ReadProcessMemoryExtensions
 
-		#if WINDOWS
+#if WINDOWS
 		private static byte[] ReadProcessMemory(IntPtr process, int memoryAddress, uint bytesToRead, out int bytesRead)
 		{
 			IntPtr ptr;
 			byte[] buffer = new byte[bytesToRead];
 			ProcessMemoryAPI.ReadProcessMemory(process, (IntPtr)memoryAddress, buffer, bytesToRead, out ptr);
-			bytesRead = ptr.ToInt32 ();
+			bytesRead = ptr.ToInt32();
 			return buffer;
 		}
 
 		public static byte[] ReadProcessMemory(int memoryAddress, uint bytesToRead)
 		{
-			if (memoryAddress > 0) {
+			if (memoryAddress > 0)
+			{
 				int num;
 				if (bytesToRead <= (32 * 1024 * 1024))
-					return ReadProcessMemory (memoryAddress, bytesToRead, out num);
+					return ReadProcessMemory(memoryAddress, bytesToRead, out num);
 			}
 			return new byte[4];
 		}
 
-        public static byte[] ReadProcessMemory(int memoryAddress, uint bytesToRead, out int bytesRead)
-        {
-            IntPtr ptr;
-            byte[] buffer = new byte[bytesToRead];
-            ProcessMemoryAPI.ReadProcessMemory(FMProcess.Pointer, (IntPtr)memoryAddress, buffer, bytesToRead, out ptr);
-            bytesRead = ptr.ToInt32();
-            return buffer;
-        }
-		#endif
-		#if LINUX
+		public static byte[] ReadProcessMemory(int memoryAddress, uint bytesToRead, out int bytesRead)
+		{
+			IntPtr ptr;
+			byte[] buffer = new byte[bytesToRead];
+			ProcessMemoryAPI.ReadProcessMemory(FMProcess.Pointer, (IntPtr)memoryAddress, buffer, bytesToRead, out ptr);
+			bytesRead = ptr.ToInt32();
+			return buffer;
+		}
+#endif
+#if LINUX
 		private static byte[] ReadProcessMemory(int pid, int address, int length)
 		{
 			byte[] buffer = new byte[length];
@@ -103,8 +119,8 @@ namespace FMScoutFramework.Core.Managers
 			}
 			return buffer;
 		}
-		#endif
-		#if MAC
+#endif
+#if MAC
 		public static byte[] ReadProcessMemory(int pid, int address, int length)
 		{
 			byte[] buffer = new byte[length];
@@ -123,152 +139,165 @@ namespace FMScoutFramework.Core.Managers
 			}
 			return buffer;
 		}
-		#endif
+#endif
 
 		public static byte ReadByte(int address)
 		{
-			return ReadProcessMemory (address, 1) [0];
+			return ReadProcessMemory(address, 1)[0];
+		}
+
+		public static byte[] ReadNextFewBytes(int address, uint count)
+		{
+			return ReadProcessMemory(address, count);
 		}
 
 		public static sbyte ReadSByte(int address)
 		{
-			return (sbyte)ReadProcessMemory (address, 1) [0];
+			return (sbyte)ReadProcessMemory(address, 1)[0];
 		}
 
 		public static Int16 ReadInt16(int address)
 		{
-			byte[] buffer = ReadProcessMemory (address, 2);
-			return ReadInt16 (buffer, 0);
+			byte[] buffer = ReadProcessMemory(address, 2);
+			return ReadInt16(buffer, 0);
 		}
 
 		public static float ReadSingle(int address)
 		{
-			byte[] buffer = ReadProcessMemory (address, 4);
-			return ReadSingle (buffer, 0);
+			byte[] buffer = ReadProcessMemory(address, 4);
+			return ReadSingle(buffer, 0);
 		}
 
 		public static Int32 ReadInt32(int address)
 		{
-			byte[] buffer = ReadProcessMemory (address, 4);
-			return ReadInt32 (buffer, 0);
+			byte[] buffer = ReadProcessMemory(address, 4);
+			return ReadInt32(buffer, 0);
 		}
 
 		public static UInt32 ReadUInt32(int address)
 		{
-			byte[] buffer = ReadProcessMemory ((int)address, 4);
-			return ReadUInt32 (buffer, 0);
+			byte[] buffer = ReadProcessMemory((int)address, 4);
+			return ReadUInt32(buffer, 0);
 		}
 
 		public static ushort ReadUInt16(int address)
 		{
-			byte[] buffer = ReadProcessMemory (address, 2);
-			return ReadUInt16 (buffer, 0);
+			byte[] buffer = ReadProcessMemory(address, 2);
+			return ReadUInt16(buffer, 0);
 		}
-        
+
 
 		public static DateTime ReadDateTime(int address)
 		{
-			int days = (ReadInt16 (address) & 0x1FF);
-			int years = ReadInt16 (address + 0x2);
-			if (days > 0 && days < 366 && years > 1900 && years < 2150) {
-				return FMScoutFramework.Core.Converters.DateConverter.FromFmDateTime ((days - 1), years);
+			int days = (ReadInt16(address) & 0x1FF);
+			int years = ReadInt16(address + 0x2);
+			if (days > 0 && days < 366 && years > 1900 && years < 2150)
+			{
+				return FMScoutFramework.Core.Converters.DateConverter.FromFmDateTime((days - 1), years);
 			}
-			return new DateTime (1900, 1, 1);
+			return new DateTime(1900, 1, 1);
 		}
 
 		public static string ReadString(int currentAddress, int? addBufferIndex, bool isRead)
 		{
-			return ReadString (currentAddress, addBufferIndex, 0, isRead);
+			return ReadString(currentAddress, addBufferIndex, 0, isRead);
 		}
 
 		public static string ReadString(int currentAddress, int? addBufferIndex)
 		{
-			return ReadString (currentAddress, addBufferIndex, 0, false);
+			return ReadString(currentAddress, addBufferIndex, 0, false);
 		}
 
 		private static Dictionary<string, string> readStringCache = new Dictionary<string, string>();
 		public static string ReadString(int currentAddress, int? addBufferIndex, int offset, bool isRead)
 		{
-			string cacheKey = string.Format ("{0}.{1}.{2}.{3}", currentAddress, addBufferIndex ?? -1, offset, isRead);
-			if (!readStringCache.ContainsKey (cacheKey)) {
-                if (!isRead)
-                {
-                    currentAddress = ProcessManager.ReadInt32(currentAddress);
-                }
-                
-                currentAddress = ProcessManager.ReadInt32(currentAddress + (int)addBufferIndex);
+			string cacheKey = string.Format("{0}.{1}.{2}.{3}", currentAddress, addBufferIndex ?? -1, offset, isRead);
+			if (!readStringCache.ContainsKey(cacheKey))
+			{
+				if (!isRead)
+				{
+					currentAddress = ProcessManager.ReadInt32(currentAddress);
+				}
 
-			    string str = "";
+				if (addBufferIndex >= 0)
+				{
+					currentAddress = ProcessManager.ReadInt32(currentAddress + (int)addBufferIndex);
+				}
+
+				string str = "";
 
 				// Skip the first byte
 				currentAddress += 0x1;
 				// Get the string Length
 				int length = (int)ProcessManager.ReadInt16(currentAddress);
-				if (length <= 0) {
+				if (length <= 0)
+				{
 					return "-";
 				}
 				length = length * 2;
 				currentAddress += 0x3;
 
-                #if WINDOWS
-                byte[] buffer = ProcessManager.ReadProcessMemory(currentAddress, (uint)length);
-                #endif
+#if WINDOWS
+				byte[] buffer = ProcessManager.ReadProcessMemory(currentAddress, (uint)length);
+#endif
 
-				#if LINUX || MAC
+#if LINUX || MAC
 				byte[] buffer = ProcessManager.ReadProcessMemory (currentAddress, length);
-                #endif
-				if (buffer.Length < length) {
+#endif
+				if (buffer.Length < length)
+				{
 					return "";
 				}
-				str = UnicodeEncoding.Unicode.GetString (buffer);
+				str = UnicodeEncoding.Unicode.GetString(buffer);
 
-				readStringCache.Add (cacheKey, str);
+				readStringCache.Add(cacheKey, str);
 			}
-			return readStringCache [cacheKey];
+			return readStringCache[cacheKey];
 		}
 
-		public static int ReadArrayLength(int currentAddress) {
-			return ReadArrayLength (currentAddress, 0x4);
+		public static int ReadArrayLength(int currentAddress)
+		{
+			return ReadArrayLength(currentAddress, 0x4);
 		}
 
 		public static int ReadArrayLength(int currentAddress, int objectLength)
 		{
-			int addressOne = ProcessManager.ReadInt32 (currentAddress);
-			int addressTwo = ProcessManager.ReadInt32 (currentAddress + 0x4);
+			int addressOne = ProcessManager.ReadInt32(currentAddress);
+			int addressTwo = ProcessManager.ReadInt32(currentAddress + 0x4);
 
 			return ((addressTwo - addressOne) / objectLength);
 		}
 		#endregion
 
 		#region ReadFromBuffer
-		private static Dictionary<int, string> stringCache = new Dictionary<int, string> ();
+		private static Dictionary<int, string> stringCache = new Dictionary<int, string>();
 		public static string ReadString(ArraySegment<byte> buffer, int offset, int additionalStringOffset)
 		{
-			int stringPointer = ReadInt32 (buffer.Array, offset + buffer.Offset);
-			if (!stringCache.ContainsKey (stringPointer))
-				stringCache.Add (stringPointer, ReadString (stringPointer, -1, additionalStringOffset, true));
+			int stringPointer = ReadInt32(buffer.Array, offset + buffer.Offset);
+			if (!stringCache.ContainsKey(stringPointer))
+				stringCache.Add(stringPointer, ReadString(stringPointer, -1, additionalStringOffset, true));
 
-			return stringCache [stringPointer];
+			return stringCache[stringPointer];
 		}
 
 		public static short ReadInt16(byte[] buffer, int offset)
 		{
-			return BitConverter.ToInt16 (buffer, offset);
+			return BitConverter.ToInt16(buffer, offset);
 		}
 
 		public static Int32 ReadInt32(byte[] buffer, int offset)
 		{
-			return BitConverter.ToInt32 (buffer, offset);
+			return BitConverter.ToInt32(buffer, offset);
 		}
 
 		public static ushort ReadUInt16(byte[] buffer, int offset)
 		{
-			return BitConverter.ToUInt16 (buffer, offset);
+			return BitConverter.ToUInt16(buffer, offset);
 		}
 
 		public static UInt32 ReadUInt32(byte[] buffer, int offset)
 		{
-			return BitConverter.ToUInt32 (buffer, offset);
+			return BitConverter.ToUInt32(buffer, offset);
 		}
 		/*
 		public static DateTime ReadDateTime(byte[] buffer, int offset)
@@ -278,140 +307,145 @@ namespace FMScoutFramework.Core.Managers
 
 		public static Single ReadSingle(byte[] buffer, int offset)
 		{
-			return BitConverter.ToSingle (buffer, offset);
+			return BitConverter.ToSingle(buffer, offset);
 		}
 
-		public static int GetAddress(byte[] buffer, int index) 
+		public static int GetAddress(byte[] buffer, int index)
 		{
 			int num = 0;
-			try {
+			try
+			{
 				num += buffer[index];
 				num += buffer[index + 1] * 0x100;
 				num += buffer[index + 2] * 0x10000;
 				num += buffer[index + 3] * 0x1000000;
 			}
-			catch {
+			catch
+			{
 				return 0;
 			}
 			return num;
 		}
 		#endregion
 
-        #region WriteProcessMemory
-        #if WINDOWS
-        public static int WriteProcessMemory(int memoryaddress, byte[] buffer, uint bytesToWrite)
-        {
-            IntPtr ptr;
-            ProcessMemoryAPI.WriteProcessMemory(FMProcess.Pointer, (IntPtr)memoryaddress, buffer, bytesToWrite, out ptr);
-            return ptr.ToInt32();
-        }
-        #endif
-		#if LINUX || MAC
+		#region WriteProcessMemory
+#if WINDOWS
+		public static int WriteProcessMemory(int memoryaddress, byte[] buffer, uint bytesToWrite)
+		{
+			IntPtr ptr;
+			ProcessMemoryAPI.WriteProcessMemory(FMProcess.Pointer, (IntPtr)memoryaddress, buffer, bytesToWrite, out ptr);
+			return ptr.ToInt32();
+		}
+#endif
+#if LINUX || MAC
         public static int WriteProcessMemory(int memoryaddress, byte[] buffer, uint bytesToWrite)
         {
             return 0;
         }
-        #endif
+#endif
 
-        public static void WriteByte(byte value, int address)
-        {
-            byte[] buffer = new byte[] { value };
-            WriteProcessMemory(address, buffer, 1);
-        }
+		public static void WriteByte(byte value, int address)
+		{
+			byte[] buffer = new byte[] { value };
+			WriteProcessMemory(address, buffer, 1);
+		}
 
-        public static void WriteDateTime(DateTime value, int address)
-        {
-			WriteInt32 (Converters.DateConverter.ToFmDateTime (value), address, true);
-        }
+		public static void WriteDateTime(DateTime value, int address)
+		{
+			WriteInt32(Converters.DateConverter.ToFmDateTime(value), address, true);
+		}
 
-        public static void WriteInt16(int value, int address)
-        {
-            WriteInt16(value, address, false);
-        }
+		public static void WriteInt16(int value, int address)
+		{
+			WriteInt16(value, address, false);
+		}
 
-        public static void WriteInt16(int value, int address, bool reverse)
-        {
-            byte[] buffer = new byte[2];
-            if (!reverse)
-            {
-                buffer[0] = (byte)(value & 0xFF);
-                buffer[1] = (byte)((value & 0xFF00) >> 8);
-            }
-            else
-            {
-                buffer[1] = (byte)(value & 0xFF);
-                buffer[0] = (byte)((value & 0xFF00) >> 8);
-            }
-            WriteProcessMemory(address, buffer, 2);
-        }
+		public static void WriteInt16(int value, int address, bool reverse)
+		{
+			byte[] buffer = new byte[2];
+			if (!reverse)
+			{
+				buffer[0] = (byte)(value & 0xFF);
+				buffer[1] = (byte)((value & 0xFF00) >> 8);
+			}
+			else
+			{
+				buffer[1] = (byte)(value & 0xFF);
+				buffer[0] = (byte)((value & 0xFF00) >> 8);
+			}
+			WriteProcessMemory(address, buffer, 2);
+		}
 
-        public static void WriteInt32(int value, int address)
-        {
-            WriteInt32(value, address, false);
-        }
+		public static void WriteInt32(int value, int address)
+		{
+			WriteInt32(value, address, false);
+		}
 
-        public static void WriteInt32(int value, int address, bool reverse)
-        {
-            byte[] buffer = new byte[4];
-            if (!reverse)
-            {
-                buffer[0] = (byte)(value & 0xFF);
-                buffer[1] = (byte)((value & 0xFF00) >> 8);
-                buffer[2] = (byte)((value & 0xFF0000) >> 0x10);
-                buffer[3] = (byte)((value & 0xFF000000) >> 0x18);
-            }
-            else
-            {
-                buffer[3] = (byte)(value & 0xFF);
-                buffer[2] = (byte)((value & 0xFF00) >> 8);
-                buffer[1] = (byte)((value & 0xFF0000) >> 0x10);
-                buffer[0] = (byte)((value & 0xFF000000) >> 0x18);
-            }
-            WriteProcessMemory(address, buffer, 4);
-        }
+		public static void WriteInt32(int value, int address, bool reverse)
+		{
+			byte[] buffer = new byte[4];
+			if (!reverse)
+			{
+				buffer[0] = (byte)(value & 0xFF);
+				buffer[1] = (byte)((value & 0xFF00) >> 8);
+				buffer[2] = (byte)((value & 0xFF0000) >> 0x10);
+				buffer[3] = (byte)((value & 0xFF000000) >> 0x18);
+			}
+			else
+			{
+				buffer[3] = (byte)(value & 0xFF);
+				buffer[2] = (byte)((value & 0xFF00) >> 8);
+				buffer[1] = (byte)((value & 0xFF0000) >> 0x10);
+				buffer[0] = (byte)((value & 0xFF000000) >> 0x18);
+			}
+			WriteProcessMemory(address, buffer, 4);
+		}
 
-        public static void WriteSByte(sbyte value, int address)
-        {
-            byte[] buffer = new byte[] { (byte)value };
-            WriteProcessMemory(address, buffer, 1);
-        }
+		public static void WriteSByte(sbyte value, int address)
+		{
+			byte[] buffer = new byte[] { (byte)value };
+			WriteProcessMemory(address, buffer, 1);
+		}
 
-        public static void WriteString(byte[] value, int address)
-        {
-            WriteProcessMemory(address, value, 4);
-        }
-        #endregion
+		public static void WriteString(byte[] value, int address)
+		{
+			WriteProcessMemory(address, value, 4);
+		}
+		#endregion
 
-        static Dictionary<Type, Func<byte[], int, object>> readFromBufferCache = new Dictionary<Type, Func<byte[], int, object>> ();
+		static Dictionary<Type, Func<byte[], int, object>> readFromBufferCache = new Dictionary<Type, Func<byte[], int, object>>();
 		private static readonly object ReadFromBufferLock = new object();
 		public static object ReadFromBuffer(byte[] bytes, int offset, Type type)
 		{
 			bool exists;
 			Func<byte[], int, object> activeDelegate = null;
 
-			lock (ReadFromBufferLock) {
-				exists = readFromBufferCache.ContainsKey (type);
+			lock (ReadFromBufferLock)
+			{
+				exists = readFromBufferCache.ContainsKey(type);
 
 				if (exists)
-					activeDelegate = readFromBufferCache [type];
+					activeDelegate = readFromBufferCache[type];
 			}
 
-			if (!exists) {
-				ParameterExpression bts = Expression.Parameter (typeof(byte[]), "bytes");
-				ParameterExpression ofs = Expression.Parameter (typeof(int), "offset");
-				MethodCallExpression mce = Expression.Call (
-					ObjectManager.GetMethodInfo (type),
+			if (!exists)
+			{
+				ParameterExpression bts = Expression.Parameter(typeof(byte[]), "bytes");
+				ParameterExpression ofs = Expression.Parameter(typeof(int), "offset");
+				MethodCallExpression mce = Expression.Call(
+					ObjectManager.GetMethodInfo(type),
 					bts, ofs);
-				LambdaExpression le = Expression.Lambda (Expression.Convert (mce, typeof(object)), bts, ofs);
+				LambdaExpression le = Expression.Lambda(Expression.Convert(mce, typeof(object)), bts, ofs);
 
-				var compiled = (Func<byte[], int, object>)le.Compile ();
-				lock (ReadFromBufferLock) {
-					readFromBufferCache.Add (type, compiled);
+				var compiled = (Func<byte[], int, object>)le.Compile();
+				lock (ReadFromBufferLock)
+				{
+					readFromBufferCache.Add(type, compiled);
 				}
 				activeDelegate = compiled;
 			}
 
-			return activeDelegate.Invoke (bytes, offset);
+			return activeDelegate.Invoke(bytes, offset);
 		}
 	}
 }

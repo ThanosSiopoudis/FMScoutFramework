@@ -35,9 +35,17 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
-		public int ID {
-			get {
-                return PropertyInvoker.Get<Int32>(PersonOffsets.ID, OriginalBytes, PersonMemoryAddress, DatabaseMode);
+		private int m_ID;
+		public int ID
+		{
+			get
+			{
+				if (m_ID != 0)
+				{
+					return m_ID;
+				}
+				m_ID =  PropertyInvoker.Get<Int32>(PersonOffsets.ID, OriginalBytes, PersonMemoryAddress, DatabaseMode);
+				return m_ID;
 			}
 		}
 
@@ -94,8 +102,20 @@ namespace FMScoutFramework.Core.Entities.InGame
 				return PropertyInvoker.GetPointer<Contract>(PersonOffsets.Contract, OriginalBytes, PersonMemoryAddress, DatabaseMode, Version);
 			}
 		}
-
-
+		public Nation Nationality
+		{
+			get
+			{
+				return PropertyInvoker.GetPointer<Nation>(PersonOffsets.Nationality, OriginalBytes, PersonMemoryAddress, DatabaseMode, Version);
+			}
+		}
+		public Club Club
+		{
+			get
+			{
+				return Contract.Team.Club;
+			}
+		}
 
 		public override string ToString () {
 			return Firstname + " " + Lastname;
