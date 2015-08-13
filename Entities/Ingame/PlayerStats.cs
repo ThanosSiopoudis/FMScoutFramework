@@ -170,6 +170,97 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
+		public string BestPosition
+		{
+			get
+			{
+				string highestPositionName = "N/A";
+				byte highestPosition = 0;
+
+				if (Goalkeeper > highestPosition)
+				{
+					highestPosition = Goalkeeper;
+					highestPositionName = "GK";
+				}
+				if (Sweeper > highestPosition)
+				{
+					highestPosition = Sweeper;
+					highestPositionName = "SW";
+				}
+				if (DefenderLeft > highestPosition)
+				{
+					highestPosition = DefenderLeft;
+					highestPositionName = "DL";
+				}
+				if (DefenderCenter > highestPosition)
+				{
+					highestPosition = DefenderCenter;
+					highestPositionName = "DC";
+				}
+				if (DefenderRight > highestPosition)
+				{
+					highestPosition = DefenderRight;
+					highestPositionName = "DR";
+				}
+				if (WingbackLeft > highestPosition)
+				{
+					highestPosition = WingbackLeft;
+					highestPositionName = "WBL";
+				}
+				if (WingbackRight > highestPosition)
+				{
+					highestPosition = WingbackRight;
+					highestPositionName = "WBR";
+				}
+				if (DefensiveMidfielder > highestPosition)
+				{
+					highestPosition = DefensiveMidfielder;
+					highestPositionName = "DM";
+				}
+
+
+				if (MidfielderCenter > highestPosition)
+				{
+					highestPosition = MidfielderCenter;
+					highestPositionName = "CM";
+				}
+				if (MidfielderLeft > highestPosition)
+				{
+					highestPosition = MidfielderLeft;
+					highestPositionName = "ML";
+				}
+				if (MidfielderRight > highestPosition)
+				{
+					highestPosition = MidfielderRight;
+					highestPositionName = "MR";
+				}
+
+
+
+				if (AttackingMidfielderLeft > highestPosition)
+				{
+					highestPosition = AttackingMidfielderLeft;
+					highestPositionName = "AML";
+				}
+				if (AttackingMidfielderCenter > highestPosition)
+				{
+					highestPosition = AttackingMidfielderCenter;
+					highestPositionName = "CAM";
+				}
+				if (AttackingMidfielderRight > highestPosition)
+				{
+					highestPosition = AttackingMidfielderRight;
+					highestPositionName = "AMR";
+				}
+				if (Striker > highestPosition)
+				{
+					highestPosition = Striker;
+					highestPositionName = "ST";
+				}
+
+				return highestPositionName;
+			}
+		}
 		public byte Crossing {
 			get {
 				return PropertyInvoker.GetPlayerAttribute(PlayerStatsOffsets.Crossing, OriginalBytes, MemoryAddress, DatabaseMode);

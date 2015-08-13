@@ -92,6 +92,14 @@ namespace FMScoutFramework.Core.Offsets
 					return 0x74;
 			}
 		}
+
+		public int Nationality
+		{
+			get
+			{
+				return 0x48;
+			}
+		}
 	}
 }
 

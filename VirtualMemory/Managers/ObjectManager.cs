@@ -227,29 +227,29 @@ namespace FMScoutFramework.Core.Managers
 			#if LINUX
 			int memoryAddress = ProcessManager.ReadInt32 (compiledObjectPointer.Invoke(GameManager.Version.MemoryAddresses));
 			memoryAddress = ProcessManager.ReadInt32(memoryAddress + GameManager.Version.MemoryAddresses.MainOffset);
-            #endif
+			#endif
 
 			#if MAC
 			int memoryAddress = ProcessManager.ReadInt32 (compiledObjectPointer.Invoke(GameManager.Version.MemoryAddresses) + GameManager.Version.MemoryAddresses.MainOffset);
 			memoryAddress = ProcessManager.ReadInt32(memoryAddress);
 			#endif
 
-            // On windows, we have ASLR, so get the main pointer from the static offset
-            #if WINDOWS
-            int memoryAddress = ProcessManager.ReadInt32(ProcessManager.fmProcess.BaseAddress + GameManager.Version.MemoryAddresses.MainAddress);
-            memoryAddress = ProcessManager.ReadInt32(memoryAddress);
-            #endif
+			// On windows, we have ASLR, so get the main pointer from the static offset
+			#if WINDOWS
+			int memoryAddress = ProcessManager.ReadInt32(ProcessManager.fmProcess.BaseAddress + GameManager.Version.MemoryAddresses.MainAddress);
+			memoryAddress = ProcessManager.ReadInt32(memoryAddress);
+			#endif
 
-            if (GameManager.Version.MainVersionNumber == "14")
-            {
-                int xorValueOne = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip + 0x4);
-                int xorValueTwo = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip);
-                memoryAddress = xorValueTwo ^ xorValueOne;
-            }
-            else
-            {
-                memoryAddress = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip);
-            }
+			if (GameManager.Version.MainVersionNumber == "14")
+			{
+				int xorValueOne = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip + 0x4);
+				int xorValueTwo = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip);
+				memoryAddress = xorValueTwo ^ xorValueOne;
+			}
+			else
+			{
+				memoryAddress = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip);
+			}
 			
 			memoryAddress = ProcessManager.ReadInt32 (memoryAddress + GameManager.Version.MemoryAddresses.XorDistance);
 
@@ -262,7 +262,7 @@ namespace FMScoutFramework.Core.Managers
 		public static List<Int32> GetMemoryAddresses(int firstAddress, int numberOfObjects)
 		{
             #if WINDOWS
-            byte[] pointerCache = ProcessManager.ReadProcessMemory(firstAddress, (uint)(numberOfObjects * 4));
+			byte[] pointerCache = ProcessManager.ReadProcessMemory(firstAddress, (uint)(numberOfObjects * 4));
             #endif
 
 			#if LINUX || MAC

@@ -285,7 +285,7 @@ namespace FMScoutFramework.Core.Offsets
                 else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
                     return 0x17C;
                 else
-                    return 0x194;
+                    return 0xA0;
             }
         }
 

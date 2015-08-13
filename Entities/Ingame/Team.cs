@@ -34,7 +34,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
-		private Club Club {
+		public Club Club {
 			get {
 				return PropertyInvoker.GetPointer<Club> (TeamOffsets.Club, OriginalBytes, MemoryAddress, DatabaseMode, Version);
 			}

@@ -10,7 +10,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 {
 	public class ClubFinances : BaseObject
 	{
-        public ClubFinancesOffsets ClubFinancesOffsets;
+		public ClubFinancesOffsets ClubFinancesOffsets;
 		public ClubFinances (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)
 		{
@@ -72,13 +72,23 @@ namespace FMScoutFramework.Core.Entities.InGame
 				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.YouthGrantIncome, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
+		public int WeeklyWageBudget
+		{
+			get
+			{
+				int value = PropertyInvoker.Get<Int32>(ClubFinancesOffsets.WeeklyWageBudget, OriginalBytes, MemoryAddress, DatabaseMode);
+				int subValue = PropertyInvoker.Get<Int32>(0x4C, OriginalBytes, MemoryAddress, DatabaseMode);
 
-		public int WeeklyWageBudget {
-			get {
-				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.WeeklyWageBudget, OriginalBytes, MemoryAddress, DatabaseMode);
+				// 10000 is just a made up number. 
+				if (value == 0 || subValue == 0 || subValue < 0 || subValue > 10000) 
+				{
+					return 0;
+				}
+				value = value + subValue;
+				return value;
 			}
 		}
-
+		
 		public int HighestWagePaid {
 			get {
 				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.HighestWagePaid, OriginalBytes, MemoryAddress, DatabaseMode);
