@@ -225,12 +225,6 @@ namespace FMScoutFramework.Core.Entities.InGame
 				return PropertyInvoker.Get<ushort> (PlayerOffsets.Height, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
-        
-		public Nation Nationality {
-			get {
-				return PropertyInvoker.GetPointer<Nation> (PlayerOffsets.Nationality, OriginalBytes, MemoryAddress, DatabaseMode, Version);
-			}
-		}
 
 		public PersonAttributes Attributes {
 			get {
@@ -240,12 +234,6 @@ namespace FMScoutFramework.Core.Entities.InGame
 		}
 
 		
-
-		public Club Club {
-			get {
-				return PropertyInvoker.GetPointer<Club> (PlayerOffsets.Club, OriginalBytes, MemoryAddress, DatabaseMode, Version);
-			}
-		}
 
 		public byte InternationalApps {
 			get {

@@ -130,7 +130,14 @@ namespace FMScoutFramework.Core.Managers
 			return ReadProcessMemory (address, 1) [0];
 		}
 
-		public static sbyte ReadSByte(int address)
+#if WINDOWS
+		public static byte[] ReadNextFewBytes(int address, uint count)
+		{
+			return ReadProcessMemory(address, count);
+		}
+#endif
+
+        public static sbyte ReadSByte(int address)
 		{
 			return (sbyte)ReadProcessMemory (address, 1) [0];
 		}
@@ -195,8 +202,11 @@ namespace FMScoutFramework.Core.Managers
                 {
                     currentAddress = ProcessManager.ReadInt32(currentAddress);
                 }
-                
-                currentAddress = ProcessManager.ReadInt32(currentAddress + (int)addBufferIndex);
+
+                if (addBufferIndex >= 0)
+                {
+                    currentAddress = ProcessManager.ReadInt32(currentAddress + (int)addBufferIndex);
+                }
 
 			    string str = "";
 
@@ -295,10 +305,22 @@ namespace FMScoutFramework.Core.Managers
 			}
 			return num;
 		}
-		#endregion
+        #endregion
+
+        public static byte[] GetProcessStringBytes(string str)
+        {
+            List<byte> bytes = new List<byte>();
+            foreach (var ch in str.ToCharArray())
+            {
+                byte chNum = (byte)ch;
+                bytes.Add(chNum);
+                bytes.Add(0);
+            }
+            return bytes.ToArray();
+        }
 
         #region WriteProcessMemory
-        #if WINDOWS
+#if WINDOWS
         public static int WriteProcessMemory(int memoryaddress, byte[] buffer, uint bytesToWrite)
         {
             IntPtr ptr;

@@ -95,9 +95,21 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
-
-
-		public override string ToString () {
+        public Nation Nationality
+        {
+            get
+            {
+                return PropertyInvoker.GetPointer<Nation>(PersonOffsets.Nationality, OriginalBytes, PersonMemoryAddress, DatabaseMode, Version);
+            }
+        }
+        public Club Club
+        {
+            get
+            {
+                return Contract.Team.Club;
+            }
+        }
+        public override string ToString () {
 			return Firstname + " " + Lastname;
 		}
 	}
