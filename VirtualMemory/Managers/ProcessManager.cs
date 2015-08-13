@@ -145,12 +145,12 @@ namespace FMScoutFramework.Core.Managers
 		{
 			return ReadProcessMemory(address, 1)[0];
 		}
-
+#if WINDOWS
 		public static byte[] ReadNextFewBytes(int address, uint count)
 		{
 			return ReadProcessMemory(address, count);
 		}
-
+#endif
 		public static sbyte ReadSByte(int address)
 		{
 			return (sbyte)ReadProcessMemory(address, 1)[0];
