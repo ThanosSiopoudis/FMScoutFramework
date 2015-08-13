@@ -48,13 +48,13 @@ namespace FMScoutFramework.Core.Entities.InGame
 
 		public string Name { 
 			get {
-				return PropertyInvoker.GetString (ClubOffsets.Name, 0, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.GetString (ClubOffsets.Name, -1, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public string ShortName {
 			get {
-				return PropertyInvoker.GetString (ClubOffsets.ShortName, 0, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.GetString (ClubOffsets.ShortName, -1, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 

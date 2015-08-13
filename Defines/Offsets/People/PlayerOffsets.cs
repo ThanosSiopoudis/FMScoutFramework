@@ -274,21 +274,6 @@ namespace FMScoutFramework.Core.Offsets
             }
         }
 
-        public short Nationality
-        {
-            get
-            {
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux))
-                    return 0x16C;
-                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-                    return 0x17C;
-                else
-                    return 0x194;
-            }
-        }
-
         public short Attributes
         {
             get
@@ -304,22 +289,6 @@ namespace FMScoutFramework.Core.Offsets
             }
         }
 
-       
-
-        public short Club
-        {
-            get
-            {
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux))
-                    return 0x200;
-                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-                    return 0x200;
-                else
-                    return 0x22C;
-            }
-        }
 
         public short InternationalApps
         {

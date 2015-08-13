@@ -75,8 +75,16 @@ namespace FMScoutFramework.Core.Entities.InGame
 
 		public int WeeklyWageBudget {
 			get {
-				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.WeeklyWageBudget, OriginalBytes, MemoryAddress, DatabaseMode);
-			}
+                int value = PropertyInvoker.Get<Int32>(ClubFinancesOffsets.WeeklyWageBudget, OriginalBytes, MemoryAddress, DatabaseMode);
+                int subValue = PropertyInvoker.Get<Int32>(0x4C, OriginalBytes, MemoryAddress, DatabaseMode);
+
+                if (value == 0 || subValue == 0 || subValue < 0 || subValue > 10000)
+                {
+                    return 0;
+                }
+                value = value + subValue;
+                return value;
+            }
 		}
 
 		public int HighestWagePaid {
