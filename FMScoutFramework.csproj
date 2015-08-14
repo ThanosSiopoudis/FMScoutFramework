@@ -13,7 +13,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;LINUX;</DefineConstants>
+    <DefineConstants>DEBUG;WINDOWS;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -33,6 +33,7 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Defines\Offsets\CityOffsets.cs" />
     <Compile Include="Defines\Offsets\People\PersonOffsets.cs" />
     <Compile Include="Defines\Offsets\Sub-Entities\RivalNationOffsets.cs" />
     <Compile Include="Defines\Versions\Steam_15_2_1_Windows.cs" />
