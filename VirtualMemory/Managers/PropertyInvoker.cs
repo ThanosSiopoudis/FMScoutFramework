@@ -84,12 +84,7 @@ namespace FMScoutFramework.Core.Managers
 			}
 		}
 
-        public static byte GetPlayerAttribute(int offset, ArraySegment<byte> baseObject, int memoryAddress, DatabaseModeEnum databaseMode)
-        {
-            return (byte)Math.Floor(PropertyInvoker.Get<byte>(offset, baseObject, memoryAddress, databaseMode) / 5.0);
-        }
-
-        private static object pointerDelegateLock = new object();
+		private static object pointerDelegateLock = new object();
 	}
 }
 
