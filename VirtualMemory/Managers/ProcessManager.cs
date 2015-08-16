@@ -40,7 +40,7 @@ namespace FMScoutFramework.Core.Managers
 		#if MAC
 		public static int GetProcessEndPoint(int pid) {
 			int memoryAddress = 0x6FFFFFFF;
-			int num3 = 0x10000000;
+			int num3 = 0x1000000;
 			bool readable = false;
 			for (int i = 1; i <= 7; i++) {
 				readable = ProcessMemoryAPI.CanReadAtAddress (pid, (UInt64)memoryAddress, 1);
