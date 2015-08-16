@@ -193,7 +193,7 @@ namespace FMScoutFramework.Core.Managers
 				if (!isRead)
 					currentAddress = ProcessManager.ReadInt32 (currentAddress);
 
-				if (addBufferIndex > 0)
+				if (addBufferIndex >= 0)
 					currentAddress = ProcessManager.ReadInt32 (currentAddress + (int)addBufferIndex);
 
 				string str = "";

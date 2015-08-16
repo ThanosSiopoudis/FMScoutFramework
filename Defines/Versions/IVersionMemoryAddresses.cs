@@ -8,6 +8,7 @@ namespace FMScoutFramework.Core.Entities.GameVersions
 		int MainAddress { get; }
 		int MainOffset { get; }
 		int XorDistance { get; }
+		int StringOffset { get; }
 		byte[] versionSig { get; }
 
 		[MemoryAddress(CountLength = 4, BytesToSkip = 0x28)]

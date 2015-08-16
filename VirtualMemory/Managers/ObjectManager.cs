@@ -94,13 +94,13 @@ namespace FMScoutFramework.Core.Managers
 					lock (memAddrSyncroot)
 					{
 						if (type == GameManager.Version.PersonEnum.Player) {
-							memoryAddresses.PlayerAddresses.Add (memoryAddress + personOffsets.Player);
+							memoryAddresses.PlayerAddresses.Add (memoryAddress);
 						} else if (type == GameManager.Version.PersonEnum.Staff) {
-							memoryAddresses.StaffAddresses.Add (memoryAddress + personOffsets.Staff);
+							memoryAddresses.StaffAddresses.Add (memoryAddress);
 						} else if (type == GameManager.Version.PersonEnum.HumanManager) {
-							memoryAddresses.HumanManagersAddresses.Add (memoryAddress + personOffsets.HumanManager);
+							memoryAddresses.HumanManagersAddresses.Add (memoryAddress);
 						} else if (type == GameManager.Version.PersonEnum.PlayerStaff) {
-							memoryAddresses.PlayerStaffAddresses.Add (memoryAddress + personOffsets.PlayerStaff);
+							memoryAddresses.PlayerStaffAddresses.Add (memoryAddress);
 						} else {
 							// Dump it
 							if (unknownAddresses.IndexOf (type) < 0 && type > 0x0) {
@@ -123,14 +123,7 @@ namespace FMScoutFramework.Core.Managers
 		/// <returns>A list with lists of memoryaddresses</returns>
 		public static List<List<int>> SplitMemoryAddressesIntoBuffer(List<Int32> memoryAddressesList)
 		{
-			#if WINDOWS || LINUX
 			var maxBytes = ProcessManager.FMProcess.EndPoint;
-			#endif
-			#if MAC
-			var maxBytes = ProcessManager.FMProcess.Process.PeakVirtualMemorySize64;
-			#endif
-
-
 			const int bitshift = 18;
 
 			int[,] chunks = new int[maxBytes >> bitshift, 10000];
@@ -230,8 +223,7 @@ namespace FMScoutFramework.Core.Managers
             #endif
 
 			#if MAC
-			int memoryAddress = ProcessManager.ReadInt32 (compiledObjectPointer.Invoke(GameManager.Version.MemoryAddresses) + GameManager.Version.MemoryAddresses.MainOffset);
-			memoryAddress = ProcessManager.ReadInt32(memoryAddress);
+			int memoryAddress = ProcessManager.ReadInt32 (GameManager.Version.MemoryAddresses.MainAddress + GameManager.Version.MemoryAddresses.MainOffset);
 			#endif
 
             // On windows, we have ASLR, so get the main pointer from the static offset
@@ -242,6 +234,7 @@ namespace FMScoutFramework.Core.Managers
 
             if (GameManager.Version.MainVersionNumber == "14")
             {
+				memoryAddress = ProcessManager.ReadInt32(memoryAddress);
                 int xorValueOne = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip + 0x4);
                 int xorValueTwo = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip);
                 memoryAddress = xorValueTwo ^ xorValueOne;
@@ -250,9 +243,7 @@ namespace FMScoutFramework.Core.Managers
             {
                 memoryAddress = ProcessManager.ReadInt32(memoryAddress + memoryAttribute.BytesToSkip);
             }
-			
 			memoryAddress = ProcessManager.ReadInt32 (memoryAddress + GameManager.Version.MemoryAddresses.XorDistance);
-
 			int numberOfObjects = ProcessManager.ReadArrayLength (memoryAddress);
 
 			List<int> memoryAddresses = GetMemoryAddresses (ProcessManager.ReadInt32 (memoryAddress), numberOfObjects);
