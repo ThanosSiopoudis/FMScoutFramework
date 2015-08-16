@@ -141,11 +141,16 @@ namespace FMScoutFramework.Core.Managers
 			return ReadInt16 (buffer, 0);
 		}
 
-		public static float ReadSingle(int address)
+		public static float ReadFloat(int address)
 		{
 			byte[] buffer = ReadProcessMemory (address, 4);
-			return ReadSingle (buffer, 0);
+			return ReadFloat (buffer, 0);
 		}
+
+        public static double ReadDouble(int address) {
+            byte[] buffer = ReadProcessMemory (address, 4);
+            return ReadDouble (buffer, 0);
+        }
 
 		public static Int32 ReadInt32(int address)
 		{
@@ -268,13 +273,13 @@ namespace FMScoutFramework.Core.Managers
 		{
 			return BitConverter.ToUInt32 (buffer, offset);
 		}
-		/*
-		public static DateTime ReadDateTime(byte[] buffer, int offset)
-		{
-			return FMScoutFramework.Core.Converters.DateConverter.FromFmDateTime (((buffer [offset + 3] + (buffer [offset + 2] * 0x100)) + (buffer [offset + 1] * 0x10000)) + (buffer [offset + 0] * 0x1000000));
-		}*/
 
-		public static Single ReadSingle(byte[] buffer, int offset)
+        public static double ReadDouble(byte[] buffer, int offset)
+        {
+            return BitConverter.ToDouble (buffer, offset);
+        }
+
+		public static float ReadFloat(byte[] buffer, int offset)
 		{
 			return BitConverter.ToSingle (buffer, offset);
 		}

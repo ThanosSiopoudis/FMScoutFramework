@@ -25,8 +25,8 @@ namespace FMScoutFramework.Core.Managers
 					return (T)(object)ProcessManager.ReadInt32 (offsetToFind);
 				else if (typeof(SByte) == typeof(T))
 					return (T)(object)ProcessManager.ReadSByte (offsetToFind);
-				else if (typeof(Single) == typeof(T))
-					return (T)(object)ProcessManager.ReadSingle (offsetToFind);
+				else if (typeof(float) == typeof(T))
+					return (T)(object)ProcessManager.ReadFloat (offsetToFind);
 				else if (typeof(UInt32) == typeof(T))
 					return (T)(object)ProcessManager.ReadUInt32 (offsetToFind);
 				else if (typeof(ushort) == typeof(T))
