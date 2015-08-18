@@ -28,7 +28,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 
 		public string Name {
 			get {
-				return ProcessManager.ReadString (MemoryAddress + NationOffsets.Name, -1);
+				return PropertyInvoker.GetString(NationOffsets.Name, -1, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 

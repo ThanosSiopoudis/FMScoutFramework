@@ -28,13 +28,13 @@ namespace FMScoutFramework.Core.Entities.InGame
 
 		public string SentenceName {
 			get {
-				return PropertyInvoker.GetString (InjuryOffsets.SentenceName, 0, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.GetString (InjuryOffsets.SentenceName, -1, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
 		public string Name {
 			get {
-				return PropertyInvoker.GetString (InjuryOffsets.Name, 0, OriginalBytes, MemoryAddress, DatabaseMode);
+				return PropertyInvoker.GetString (InjuryOffsets.Name, -1, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 	}

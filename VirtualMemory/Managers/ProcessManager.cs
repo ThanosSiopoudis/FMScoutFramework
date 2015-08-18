@@ -40,7 +40,7 @@ namespace FMScoutFramework.Core.Managers
 		#if MAC
 		public static int GetProcessEndPoint(int pid) {
 			int memoryAddress = 0x6FFFFFFF;
-			int num3 = 0x10000000;
+			int num3 = 0x1000000;
 			bool readable = false;
 			for (int i = 1; i <= 7; i++) {
 				readable = ProcessMemoryAPI.CanReadAtAddress (pid, (UInt64)memoryAddress, 1);
@@ -141,11 +141,16 @@ namespace FMScoutFramework.Core.Managers
 			return ReadInt16 (buffer, 0);
 		}
 
-		public static float ReadSingle(int address)
+		public static float ReadFloat(int address)
 		{
 			byte[] buffer = ReadProcessMemory (address, 4);
-			return ReadSingle (buffer, 0);
+			return ReadFloat (buffer, 0);
 		}
+
+        public static double ReadDouble(int address) {
+            byte[] buffer = ReadProcessMemory (address, 4);
+            return ReadDouble (buffer, 0);
+        }
 
 		public static Int32 ReadInt32(int address)
 		{
@@ -164,7 +169,6 @@ namespace FMScoutFramework.Core.Managers
 			byte[] buffer = ReadProcessMemory (address, 2);
 			return ReadUInt16 (buffer, 0);
 		}
-        
 
 		public static DateTime ReadDateTime(int address)
 		{
@@ -191,14 +195,13 @@ namespace FMScoutFramework.Core.Managers
 		{
 			string cacheKey = string.Format ("{0}.{1}.{2}.{3}", currentAddress, addBufferIndex ?? -1, offset, isRead);
 			if (!readStringCache.ContainsKey (cacheKey)) {
-                if (!isRead)
-                {
-                    currentAddress = ProcessManager.ReadInt32(currentAddress);
-                }
-                
-                currentAddress = ProcessManager.ReadInt32(currentAddress + (int)addBufferIndex);
+				if (!isRead)
+					currentAddress = ProcessManager.ReadInt32 (currentAddress);
 
-			    string str = "";
+				if (addBufferIndex >= 0)
+					currentAddress = ProcessManager.ReadInt32 (currentAddress + (int)addBufferIndex);
+
+				string str = "";
 
 				// Skip the first byte
 				currentAddress += 0x1;
@@ -270,13 +273,13 @@ namespace FMScoutFramework.Core.Managers
 		{
 			return BitConverter.ToUInt32 (buffer, offset);
 		}
-		/*
-		public static DateTime ReadDateTime(byte[] buffer, int offset)
-		{
-			return FMScoutFramework.Core.Converters.DateConverter.FromFmDateTime (((buffer [offset + 3] + (buffer [offset + 2] * 0x100)) + (buffer [offset + 1] * 0x10000)) + (buffer [offset + 0] * 0x1000000));
-		}*/
 
-		public static Single ReadSingle(byte[] buffer, int offset)
+        public static double ReadDouble(byte[] buffer, int offset)
+        {
+            return BitConverter.ToDouble (buffer, offset);
+        }
+
+		public static float ReadFloat(byte[] buffer, int offset)
 		{
 			return BitConverter.ToSingle (buffer, offset);
 		}

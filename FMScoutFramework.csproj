@@ -7,39 +7,46 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FMScoutFramework</RootNamespace>
     <AssemblyName>FMScoutFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
+<<<<<<< HEAD
     <DefineConstants>DEBUG;WINDOWS;</DefineConstants>
+=======
+    <DefineConstants>DEBUG;MAC;</DefineConstants>
+>>>>>>> upstream/master
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>MAC;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Defines\Offsets\CityOffsets.cs" />
     <Compile Include="Defines\Offsets\People\PersonOffsets.cs" />
+=======
+>>>>>>> upstream/master
     <Compile Include="Defines\Offsets\Sub-Entities\RivalNationOffsets.cs" />
     <Compile Include="Defines\Versions\Steam_15_2_1_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_15_3_2_Windows.cs" />
-    <Compile Include="Entities\Ingame\Person.cs" />
     <Compile Include="Entities\Ingame\Sub-Entities\RivalNation.cs" />
     <Compile Include="FMCore.cs" />
     <Compile Include="Attributes\MemoryAddressAttribute.cs" />
@@ -48,8 +55,6 @@
     <Compile Include="Defines\Offsets\Sub-Entities\ClubFinancesOffsets.cs" />
     <Compile Include="Defines\Offsets\ClubOffsets.cs" />
     <Compile Include="Defines\Offsets\NationOffsets.cs" />
-    <Compile Include="Defines\Offsets\People\PlayerOffsets.cs" />
-    <Compile Include="Defines\Offsets\People\Sub-Entities\PlayerStatsOffsets.cs" />
     <Compile Include="Defines\Offsets\TeamOffsets.cs" />
     <Compile Include="Defines\Versions\IPersonVersionOffsets.cs" />
     <Compile Include="Defines\Versions\IVersion.cs" />
@@ -63,10 +68,7 @@
     <Compile Include="Entities\Ingame\ClubFinances.cs" />
     <Compile Include="Entities\Ingame\Continent.cs" />
     <Compile Include="Entities\Ingame\Nation.cs" />
-    <Compile Include="Entities\Ingame\Player.cs" />
-    <Compile Include="Entities\Ingame\PlayerStaff.cs" />
     <Compile Include="Entities\Ingame\PlayerStats.cs" />
-    <Compile Include="Entities\Ingame\Staff.cs" />
     <Compile Include="Entities\Ingame\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\BitwiseOperations.cs" />
@@ -79,17 +81,25 @@
     <Compile Include="Defines\Offsets\InjuryOffsets.cs" />
     <Compile Include="Entities\Ingame\Injury.cs" />
     <Compile Include="Entities\Ingame\PersonAttributes.cs" />
-    <Compile Include="Defines\Offsets\People\Sub-Entities\PersonAttributesOffsets.cs" />
-    <Compile Include="Defines\Offsets\People\Sub-Entities\ContractOffsets.cs" />
     <Compile Include="Entities\Ingame\Contract.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_0_Mac.cs" />
-    <Compile Include="Defines\Offsets\People\Sub-Entities\ContractClausesOffsets.cs" />
     <Compile Include="Entities\Ingame\ContractClauses.cs" />
-    <Compile Include="Defines\Offsets\People\Sub-Entities\ContractBonusOffsets.cs" />
     <Compile Include="Entities\Ingame\ContractBonus.cs" />
-    <Compile Include="Defines\Offsets\People\StaffOffsets.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Linux.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Mac.cs" />
+    <Compile Include="Defines\Versions\Steam_15_3_2_Mac.cs" />
+    <Compile Include="Defines\Offsets\PersonOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\PlayerOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\PlayerStatsOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\PersonAttributesOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\ContractOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\ContractClausesOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\ContractBonusOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\StaffOffsets.cs" />
+    <Compile Include="Entities\Ingame\Persons\Player.cs" />
+    <Compile Include="Entities\Ingame\Persons\PlayerStaff.cs" />
+    <Compile Include="Entities\Ingame\Persons\Staff.cs" />
+    <Compile Include="Entities\Ingame\Person.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -100,4 +110,7 @@
     <None Include="VirtualMemory\ExternalSharedLibraries\libprocessmemoryapi.dylib" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Entities\Ingame\Persons\" />
+  </ItemGroup>
 </Project>

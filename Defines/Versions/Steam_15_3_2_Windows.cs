@@ -52,6 +52,7 @@ namespace FMScoutFramework.Core.Entities.GameVersions
             public int MainAddress { get { return 0x1A8484E; } }
             public int MainOffset { get { return 0x0; } }
             public int XorDistance { get { return 0x40; } } // Not XOR but useful
+			public int StringOffset { get { return 0x0; } }
 
             public byte[] versionSig
             {
@@ -185,7 +186,8 @@ namespace FMScoutFramework.Core.Entities.GameVersions
         /// </summary>
         public class PersonVersionOffsets : IPersonVersionOffsets
         {
-            public int Player { get { return -0x158; } }
+			public int Person { get { return -0xC4; } }
+            public int Player { get { return -0x208; } }
             public int Staff { get { return -0x84; } }
             public int NonPlayer { get { return 0x0; } }
             public int HumanManager { get { return -0x44; } }

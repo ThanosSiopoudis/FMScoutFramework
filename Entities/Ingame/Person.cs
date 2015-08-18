@@ -9,97 +9,87 @@ namespace FMScoutFramework.Core.Entities.InGame
 {
 	public class Person : BaseObject
 	{
+		public PersonOffsets PersonOffsets;
 		public Person (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)
 		{
-            this.PersonOffsets = new PersonOffsets(version);
-        }
-        public Person(int memoryAddress, ArraySegment<byte> originalBytes, IVersion version) 
+			this.PersonOffsets = new PersonOffsets(version);
+		}
+		public Person (int memoryAddress, ArraySegment<byte> originalBytes, IVersion version) 
 			: base(memoryAddress, originalBytes, version)
 		{
-            this.PersonOffsets = new PersonOffsets(version);
-        }
-        public PersonOffsets PersonOffsets;
+			this.PersonOffsets = new PersonOffsets(version);
+		}
 
-        public virtual int PersonMemoryAddress
-        {
-            get
-            {
-                return -1;
-            }
-        }
-
-		public int RowID {
+		protected virtual int PersonAddress {
 			get {
-                return PropertyInvoker.Get<Int32>(PersonOffsets.RowID, OriginalBytes, PersonMemoryAddress, DatabaseMode);
+				return (MemoryAddress + Version.PersonOffsets.Person);
 			}
 		}
 
-		public int ID {
+		public DateTime DateOfBirth {
 			get {
-                return PropertyInvoker.Get<Int32>(PersonOffsets.ID, OriginalBytes, PersonMemoryAddress, DatabaseMode);
+				return PropertyInvoker.Get<DateTime> (PersonOffsets.DateOfBirth, OriginalBytes, PersonAddress, DatabaseMode);
 			}
 		}
 
+		public int Age {
+			get {
+				DateTime now = DateTime.Today;
+				int age = now.Year - DateOfBirth.Year;
+				if (DateOfBirth > now.AddYears (-age))
+					age--;
+				return age;
+			}
+		}
 
-
-
-	
 		public string Fullname {
 			get {
-                return PropertyInvoker.GetString(PersonOffsets.Fullname, 0, OriginalBytes, PersonMemoryAddress, DatabaseMode);
+				return PropertyInvoker.GetString (PersonOffsets.Fullname, -1, OriginalBytes, PersonAddress, DatabaseMode);
 			}
 		}
 
 		public string Nickname {
 			get {
-                return PropertyInvoker.GetString(PersonOffsets.Nickname, 0, OriginalBytes, PersonMemoryAddress, DatabaseMode);
+				return PropertyInvoker.GetString(PersonOffsets.Nickname, Version.MemoryAddresses.StringOffset, OriginalBytes, PersonAddress, DatabaseMode);
 			}
 		}
 
 		public string Firstname {
 			get {
-                return PropertyInvoker.GetString(PersonOffsets.Firstname, 0x0, OriginalBytes, PersonMemoryAddress, DatabaseMode);
+				return PropertyInvoker.GetString(PersonOffsets.Firstname, Version.MemoryAddresses.StringOffset, OriginalBytes, PersonAddress, DatabaseMode);
 			}
 		}
 
 		public string Lastname {
 			get {
-                return PropertyInvoker.GetString(PersonOffsets.Lastname, 0x0, OriginalBytes, PersonMemoryAddress, DatabaseMode);
+				return PropertyInvoker.GetString(PersonOffsets.Lastname, Version.MemoryAddresses.StringOffset, OriginalBytes, PersonAddress, DatabaseMode);
 			}
 		}
 
-		public DateTime DateOfBirth
-		{
-			get
-			{
-				return PropertyInvoker.Get<DateTime>(PersonOffsets.DateOfBirth, OriginalBytes, PersonMemoryAddress, DatabaseMode);
-			}
-		}
-		public int Age
-		{
-			get
-			{
-				DateTime now = ProcessManager.ReadDateTime(ProcessManager.fmProcess.BaseAddress + Version.MemoryAddresses.CurrentDateTime);
-				int age = now.Year - DateOfBirth.Year;
-				if (DateOfBirth > now.AddYears(-age))
-					age--;
-				return age;
-			}
-		}
-		public Contract Contract
-		{
-			get
-			{
-				return PropertyInvoker.GetPointer<Contract>(PersonOffsets.Contract, OriginalBytes, PersonMemoryAddress, DatabaseMode, Version);
+		public Nation Nationality {
+			get {
+				return PropertyInvoker.GetPointer<Nation> (PersonOffsets.Nationality, OriginalBytes, PersonAddress, DatabaseMode, Version);
 			}
 		}
 
+		public PersonAttributes Attributes {
+			get {
+				int AttributesAddress = PersonAddress + PersonOffsets.Attributes;
+				return new PersonAttributes (AttributesAddress, Version);
+			}
+		}
 
+		public Contract Contract {
+			get {
+				return PropertyInvoker.GetPointer<Contract> (PersonOffsets.Contract, OriginalBytes, PersonAddress, DatabaseMode, Version);
+			}
+		}
 
-		public override string ToString () {
-			return Firstname + " " + Lastname;
+		public Club Club {
+			get {
+				return PropertyInvoker.GetPointer<Club> (PersonOffsets.Club, OriginalBytes, PersonAddress, DatabaseMode, Version);
+			}
 		}
 	}
 }
-
