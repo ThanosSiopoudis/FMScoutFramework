@@ -44,25 +44,37 @@ namespace UnitTests
         [TestMethod]
         public void CityName()
         {
-            Assert.IsTrue(TestCity.Name == name);
+            Assert.AreEqual(name, TestCity.Name);
         }
 
         [TestMethod]
         public void CityNation()
         {
-            Assert.IsTrue(TestCity.Nation.Name == nation);
+            Assert.AreEqual(nation, TestCity.Nation.Name);
         }
 
         [TestMethod]
         public void CityAttraction()
         {
-            Assert.IsTrue(TestCity.Attraction == attraction);
+            Assert.AreEqual(attraction, TestCity.Attraction);
+        }
+
+        [TestMethod]
+        public void CityLatitude()
+        {
+            Assert.AreEqual(latitude, TestCity.Latitude, 0.001);
+        }
+
+        [TestMethod]
+        public void CityLongitude()
+        {
+            Assert.AreEqual(longitude, TestCity.Longitude, 0.001);
         }
 
         [TestMethod]
         public void CityAltitude()
         {
-            Assert.IsTrue(TestCity.Altitude == altitude);
+            Assert.AreEqual(altitude, TestCity.Altitude);
         }
 
         [TestMethod]

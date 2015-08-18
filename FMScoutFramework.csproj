@@ -14,11 +14,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-<<<<<<< HEAD
     <DefineConstants>DEBUG;WINDOWS;</DefineConstants>
-=======
-    <DefineConstants>DEBUG;MAC;</DefineConstants>
->>>>>>> upstream/master
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -38,11 +34,7 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Defines\Offsets\CityOffsets.cs" />
-    <Compile Include="Defines\Offsets\People\PersonOffsets.cs" />
-=======
->>>>>>> upstream/master
     <Compile Include="Defines\Offsets\Sub-Entities\RivalNationOffsets.cs" />
     <Compile Include="Defines\Versions\Steam_15_2_1_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Windows.cs" />
@@ -109,8 +101,8 @@
     <None Include="app.config" />
     <None Include="VirtualMemory\ExternalSharedLibraries\libprocessmemoryapi.dylib" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Entities\Ingame\Persons\" />
+    <Folder Include="Defines\Offsets\People\" />
   </ItemGroup>
+  <ItemGroup />
 </Project>

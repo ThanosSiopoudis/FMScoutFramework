@@ -20,8 +20,8 @@ namespace FMScoutFramework.Defines.Offsets
         public const int Nation = 0x18;
         public const short Name = 0x10;
         public const short Attraction = 0x38;
-        public const short Latitude = 0x24; // TODO (Can't read floats right now)
-        public const short Longitude = 028; // TODO (Can't read floats right now)
+        public const short Latitude = 0x24;
+        public const short Longitude = 0x28;
         public const short Altitude = 0x34;
     }
 }

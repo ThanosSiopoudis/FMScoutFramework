@@ -54,22 +54,21 @@ namespace FMScoutFramework.Core.Entities.InGame
             }
         }
 
-        // Need to add the ability to read floating numbers from memory
-        //public int Latitude
-        //{
-        //    get
-        //    {
-        //        return PropertyInvoker.Get<int>(CityOffsets.Latitude, OriginalBytes, MemoryAddress, DatabaseMode);
-        //    }
-        //}
+        public float Latitude
+        {
+            get
+            {
+                return PropertyInvoker.Get<float>(CityOffsets.Latitude, OriginalBytes, MemoryAddress, DatabaseMode);
+            }
+        }
 
-        //public int Longitude
-        //{
-        //    get
-        //    {
-        //        return PropertyInvoker.Get<int>(CityOffsets.Longitude, OriginalBytes, MemoryAddress, DatabaseMode);
-        //    }
-        //}
+        public float Longitude
+        {
+            get
+            {
+                return PropertyInvoker.Get<float>(CityOffsets.Longitude, OriginalBytes, MemoryAddress, DatabaseMode);
+            }
+        }
 
         public short Altitude
         {
