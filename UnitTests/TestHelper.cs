@@ -11,22 +11,29 @@ namespace UnitTests
 {
     public static class TestHelper
     {
+        private static FMCore _core;
+
         public static FMCore GetLoadedCore()
         {
-            var autoResetEvent = new AutoResetEvent(false);
-
-            var core = new FMCore(DatabaseModeEnum.Realtime);
-
-            core.GameLoaded += () =>
+            if (_core == null)
             {
-                autoResetEvent.Set();
-            };
+                var autoResetEvent = new AutoResetEvent(false);
 
-            core.LoadData();
+                var core = new FMCore(DatabaseModeEnum.Realtime);
 
-            autoResetEvent.WaitOne();
+                core.GameLoaded += () =>
+                {
+                    autoResetEvent.Set();
+                };
 
-            return core;
+                core.LoadData();
+
+                autoResetEvent.WaitOne();
+
+                _core = core;
+            }
+
+            return _core;
         }
     }
 }
