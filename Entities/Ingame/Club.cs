@@ -107,6 +107,14 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
+        public City City
+        {
+            get
+            {
+                return PropertyInvoker.GetPointer<City>(ClubOffsets.City, OriginalBytes, MemoryAddress, DatabaseMode, Version);
+            }
+        }
+
 		public override string ToString ()
 		{
 			return Name;
