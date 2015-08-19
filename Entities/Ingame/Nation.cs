@@ -20,15 +20,15 @@ namespace FMScoutFramework.Core.Entities.InGame
             this.NationOffsets = new NationOffsets(Version);
         }
 
+        public Int32 RowID {
+            get {
+                return ProcessManager.ReadInt32 (MemoryAddress + NationOffsets.RowID);
+            }
+        }
+
 		public Int32 ID {
 			get {
 				return ProcessManager.ReadInt32 (MemoryAddress + NationOffsets.ID);
-			}
-		}
-
-		public string Name {
-			get {
-				return PropertyInvoker.GetString(NationOffsets.Name, -1, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}
 
@@ -65,6 +65,34 @@ namespace FMScoutFramework.Core.Entities.InGame
                 return result;
             }
         }
+
+        public string Name {
+            get {
+                return PropertyInvoker.GetString(NationOffsets.Name, -1, OriginalBytes, MemoryAddress, DatabaseMode);
+            }
+        }
+
+        public string ShortName {
+            get {
+                return PropertyInvoker.GetString (NationOffsets.ShortName, -1, OriginalBytes, MemoryAddress, DatabaseMode);
+            }
+        }
+
+        public string ThreeLetterName {
+            get {
+                return PropertyInvoker.GetString (NationOffsets.ThreeLetterName, -1, OriginalBytes, MemoryAddress, DatabaseMode);
+            }
+        }
+
+        public string NationalityName {
+            get {
+                return PropertyInvoker.GetString (NationOffsets.Nationality, -1, OriginalBytes, MemoryAddress, DatabaseMode);
+            }
+        }
+
+        // TODO: SpokenLanguages
+
+
 
 		public override string ToString ()
 		{

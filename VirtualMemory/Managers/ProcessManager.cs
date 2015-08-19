@@ -23,7 +23,7 @@ namespace FMScoutFramework.Core.Managers
 		#if WINDOWS
 		public static int GetProcessEndPoint(IntPtr process) {
 			int bytesRead = 0;
-			int memoryAddress = 0x6fffffff;
+			int memoryAddress = 0x7fffffff;
 			int num3 = 0x1000000;
 			for (int i = 1; i <= 7; i++) {
 				ReadProcessMemory (process, memoryAddress, 1, out bytesRead);
@@ -39,7 +39,7 @@ namespace FMScoutFramework.Core.Managers
 		#endif
 		#if MAC
 		public static int GetProcessEndPoint(int pid) {
-			int memoryAddress = 0x6FFFFFFF;
+			int memoryAddress = 0x7FFFFFFF;
 			int num3 = 0x1000000;
 			bool readable = false;
 			for (int i = 1; i <= 7; i++) {

@@ -91,6 +91,8 @@
     <Compile Include="Entities\Ingame\Persons\PlayerStaff.cs" />
     <Compile Include="Entities\Ingame\Persons\Staff.cs" />
     <Compile Include="Entities\Ingame\Person.cs" />
+    <Compile Include="Defines\Offsets\Sub-Entities\NationTaxRulesOffsets.cs" />
+    <Compile Include="Entities\Ingame\Sub-Entities\NationTaxRule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
