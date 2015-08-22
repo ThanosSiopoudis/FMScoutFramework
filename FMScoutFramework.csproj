@@ -44,6 +44,7 @@
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Defines\FMProcess.cs" />
     <Compile Include="Defines\Offsets\Sub-Entities\ClubFinancesOffsets.cs" />
+    <Compile Include="Defines\Offsets\CityOffsets.cs" />
     <Compile Include="Defines\Offsets\ClubOffsets.cs" />
     <Compile Include="Defines\Offsets\NationOffsets.cs" />
     <Compile Include="Defines\Offsets\TeamOffsets.cs" />
