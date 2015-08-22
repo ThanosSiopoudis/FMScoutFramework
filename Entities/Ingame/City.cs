@@ -1,7 +1,7 @@
 ﻿using System;
 using FMScoutFramework.Core.Entities.GameVersions;
 using FMScoutFramework.Core.Managers;
-using FMScoutFramework.Core.Offsets;
+using FMScoutFramework.Defines.Offsets;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
