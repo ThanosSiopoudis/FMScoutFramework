@@ -107,7 +107,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
-		public override string ToString ()
+        public override string ToString ()
 		{
 			return Name;
 		}

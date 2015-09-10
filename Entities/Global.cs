@@ -23,5 +23,7 @@ namespace FMScoutFramework.Core.Entities
 	}
 
 	public enum DatabaseModeEnum { Realtime, Cached }
+
+    public enum OperatingSystemEnum { Windows, Mac, Linux }
 }
 

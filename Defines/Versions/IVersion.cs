@@ -7,7 +7,11 @@
 		IVersionMemoryAddresses MemoryAddresses { get; }
 		IVersionPersonEnumPointers PersonEnum { get; }
 		IPersonVersionOffsets PersonOffsets { get; }
-	}
+        OperatingSystemEnum OperatingSystem
+        {
+            get;
+        }
+    }
 
 	internal interface IIVersion : IVersion
 	{
