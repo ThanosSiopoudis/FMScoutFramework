@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using FMScoutFramework.Core.Entities.GameVersions;
 
 namespace FMScoutFramework.Core.Offsets
@@ -22,11 +22,13 @@ namespace FMScoutFramework.Core.Offsets
 					return 0x88;
 				else if (Version.GetType () == typeof(Steam_15_2_1_Windows))
 					return 0x98;
-				else if (Version.GetType () == typeof(Steam_15_3_2_Mac) ||
-				         Version.GetType () == typeof(Steam_15_3_2_Windows)) {
+				else if (Version.GetType () == typeof(Steam_15_3_2_Mac)) {
 					return 0xF8;
 				}
-                    return 0x90;
+                else if (Version.GetType() == typeof(Steam_15_3_2_Windows))
+                    return 0x108;
+
+                return 0x90;
             }
         }
 
