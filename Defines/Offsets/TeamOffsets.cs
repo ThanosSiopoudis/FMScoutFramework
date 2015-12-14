@@ -21,6 +21,8 @@ namespace FMScoutFramework.Core.Offsets
 		public const short Stadium				= 0x48;
 		public const short Manager				= 0x4C;
 		public const short Reputation			= 0x68;
-	}
+        public const short League = 0x30;
+
+    }
 }
 

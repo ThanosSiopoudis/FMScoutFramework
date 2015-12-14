@@ -75,6 +75,10 @@ namespace FMScoutFramework.Core.Entities.InGame
 
 		public int WeeklyWageBudget {
 			get {
+                if (YouthGrantIncome <= 0 || YouthGrantIncome > 11000)
+                {
+                    return 0;
+                }
 				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.WeeklyWageBudget, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
 		}

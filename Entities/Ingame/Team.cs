@@ -34,7 +34,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
-		private Club Club {
+        public Club Club {
 			get {
 				return PropertyInvoker.GetPointer<Club> (TeamOffsets.Club, OriginalBytes, MemoryAddress, DatabaseMode, Version);
 			}
@@ -79,7 +79,15 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
-		public override string ToString ()
+        public League League
+        {
+            get
+            {
+                return PropertyInvoker.GetPointer<League>(TeamOffsets.League, OriginalBytes, MemoryAddress, DatabaseMode, Version);
+            }
+        }
+
+        public override string ToString ()
 		{
 			if (this.Club.Name != "-")
 				return string.Format ("{0} ({1})", this.Club.Name, this.TeamType.ToString());

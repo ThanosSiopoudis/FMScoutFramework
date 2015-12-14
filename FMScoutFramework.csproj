@@ -14,7 +14,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;MAC;</DefineConstants>
+    <DefineConstants>DEBUG;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -34,10 +34,12 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Defines\Offsets\LeagueOffsets.cs" />
     <Compile Include="Defines\Offsets\Sub-Entities\RivalNationOffsets.cs" />
     <Compile Include="Defines\Versions\Steam_15_2_1_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_15_3_2_Windows.cs" />
+    <Compile Include="Entities\Ingame\League.cs" />
     <Compile Include="Entities\Ingame\Sub-Entities\RivalNation.cs" />
     <Compile Include="FMCore.cs" />
     <Compile Include="Attributes\MemoryAddressAttribute.cs" />
@@ -104,7 +106,5 @@
     <None Include="VirtualMemory\ExternalSharedLibraries\libprocessmemoryapi.dylib" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Entities\Ingame\Persons\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

@@ -20,6 +20,13 @@ namespace FMScoutFramework.Core.Entities.GameVersions
 			PersonOffsets = new PersonVersionOffsets();
 		}
 
+        public OperatingSystemEnum  OperatingSystem
+        {
+            get
+            {
+                return OperatingSystemEnum.Linux;
+            }
+        }
 		public string Description {
 			get { return "14.3.0 Steam"; }
 		}

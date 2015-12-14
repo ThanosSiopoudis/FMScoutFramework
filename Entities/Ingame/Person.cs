@@ -33,15 +33,17 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
-		public int Age {
-			get {
-				DateTime now = DateTime.Today;
-				int age = now.Year - DateOfBirth.Year;
-				if (DateOfBirth > now.AddYears (-age))
-					age--;
-				return age;
-			}
-		}
+        public int Age
+        {
+            get
+            {
+                DateTime now = ProcessManager.ReadDateTime(ProcessManager.fmProcess.BaseAddress + Version.MemoryAddresses.CurrentDateTime);
+                int age = now.Year - DateOfBirth.Year;
+                if (DateOfBirth > now.AddYears(-age))
+                age--;
+                return age;
+            }
+        }
 
 		public string Fullname {
 			get {
@@ -57,6 +59,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 
 		public string Firstname {
 			get {
+               // System.Diagnostics.Debug.WriteLine("Version.MemoryAddresses.StringOffset = " + Version.MemoryAddresses.StringOffset);
 				return PropertyInvoker.GetString(PersonOffsets.Firstname, Version.MemoryAddresses.StringOffset, OriginalBytes, PersonAddress, DatabaseMode);
 			}
 		}
@@ -87,9 +90,14 @@ namespace FMScoutFramework.Core.Entities.InGame
 		}
 
 		public Club Club {
-			get {
-				return PropertyInvoker.GetPointer<Club> (PersonOffsets.Club, OriginalBytes, PersonAddress, DatabaseMode, Version);
-			}
-		}
+            get
+            {
+                if (Contract != null && Contract.Team != null)
+                {
+                    return Contract.Team.Club;
+                }
+                return null;
+            }
+        }
 	}
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMScoutFramework", "FMScoutFramework.csproj", "{E74FE82A-2E12-4C51-AD24-7D2DDE5C36A6}"
 EndProject
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{316F5660-51E2-4B99-ADCB-DA6F2DD23909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{316F5660-51E2-4B99-ADCB-DA6F2DD23909}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{316F5660-51E2-4B99-ADCB-DA6F2DD23909}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{316F5660-51E2-4B99-ADCB-DA6F2DD23909}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E74FE82A-2E12-4C51-AD24-7D2DDE5C36A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E74FE82A-2E12-4C51-AD24-7D2DDE5C36A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E74FE82A-2E12-4C51-AD24-7D2DDE5C36A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E74FE82A-2E12-4C51-AD24-7D2DDE5C36A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{316F5660-51E2-4B99-ADCB-DA6F2DD23909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{316F5660-51E2-4B99-ADCB-DA6F2DD23909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{316F5660-51E2-4B99-ADCB-DA6F2DD23909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{316F5660-51E2-4B99-ADCB-DA6F2DD23909}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
