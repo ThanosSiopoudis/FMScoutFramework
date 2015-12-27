@@ -1,12 +1,13 @@
 ﻿using System;
 using FMScoutFramework.Core.Entities.GameVersions;
+using FMScoutFramework.Core.Entities.InGame.Interfaces;
 using FMScoutFramework.Core.Managers;
 using FMScoutFramework.Defines.Offsets;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
-	public class City : BaseObject
-	{
+	public class City : BaseObject, ICity
+    {
 		public City (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)
 		{	}

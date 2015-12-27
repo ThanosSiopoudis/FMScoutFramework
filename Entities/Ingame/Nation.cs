@@ -3,11 +3,12 @@ using FMScoutFramework.Core.Entities.GameVersions;
 using FMScoutFramework.Core.Managers;
 using FMScoutFramework.Core.Offsets;
 using FMScoutFramework.Core.Attributes;
+using FMScoutFramework.Core.Entities.InGame.Interfaces;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
-	public class Nation : BaseObject
-	{
+	public class Nation : BaseObject, INation
+    {
         public NationOffsets NationOffsets;
 		public Nation (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)

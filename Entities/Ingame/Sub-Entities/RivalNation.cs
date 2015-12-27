@@ -3,10 +3,11 @@ using FMScoutFramework.Core.Entities.GameVersions;
 using FMScoutFramework.Core.Managers;
 using FMScoutFramework.Core.Offsets;
 using FMScoutFramework.Core.Attributes;
+using FMScoutFramework.Core.Entities.InGame.Interfaces;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
-    public class RivalNation : BaseObject
+    public class RivalNation : BaseObject, IRivalNation
     {
         public RivalNationOffsets RivalNationOffsets;
         public RivalNation (int memoryAddress, IVersion version)
