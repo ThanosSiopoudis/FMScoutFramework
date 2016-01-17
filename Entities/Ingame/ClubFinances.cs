@@ -4,12 +4,13 @@ using FMScoutFramework.Core.Entities.GameVersions;
 using FMScoutFramework.Core.Managers;
 using FMScoutFramework.Core.Offsets;
 using FMScoutFramework.Core.Attributes;
+using FMScoutFramework.Core.Entities.InGame.Interfaces;
 using FMScoutFramework.Core.Utilities;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
-	public class ClubFinances : BaseObject
-	{
+	public class ClubFinances : BaseObject, IClubFinances
+    {
         public ClubFinancesOffsets ClubFinancesOffsets;
 		public ClubFinances (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)

@@ -3,11 +3,12 @@ using FMScoutFramework.Core.Entities.GameVersions;
 using FMScoutFramework.Core.Managers;
 using FMScoutFramework.Core.Offsets;
 using FMScoutFramework.Core.Attributes;
+using FMScoutFramework.Core.Entities.InGame.Interfaces;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
-	public class Club : BaseObject
-	{
+	public class Club : BaseObject, IClub
+    {
         public ClubOffsets ClubOffsets;
 		public Club (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)

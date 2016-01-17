@@ -27,32 +27,47 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DefineConstants>MAC;</DefineConstants>
+    <DefineConstants>RELEASE;MAC;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Defines\Offsets\Sub-Entities\RivalNationOffsets.cs" />
-    <Compile Include="Defines\Versions\Steam_15_2_1_Windows.cs" />
-    <Compile Include="Defines\Versions\Steam_14_3_1_Windows.cs" />
-    <Compile Include="Defines\Versions\Steam_15_3_2_Windows.cs" />
-    <Compile Include="Entities\Ingame\Sub-Entities\RivalNation.cs" />
     <Compile Include="FMCore.cs" />
     <Compile Include="Attributes\MemoryAddressAttribute.cs" />
     <Compile Include="Converters\DateConverter.cs" />
-    <Compile Include="Defines\FMProcess.cs" />
-    <Compile Include="Defines\Offsets\Sub-Entities\ClubFinancesOffsets.cs" />
-    <Compile Include="Defines\Offsets\CityOffsets.cs" />
-    <Compile Include="Defines\Offsets\ClubOffsets.cs" />
-    <Compile Include="Defines\Offsets\NationOffsets.cs" />
-    <Compile Include="Defines\Offsets\TeamOffsets.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Defines\Versions\IPersonVersionOffsets.cs" />
     <Compile Include="Defines\Versions\IVersion.cs" />
     <Compile Include="Defines\Versions\IVersionMemoryAddresses.cs" />
     <Compile Include="Defines\Versions\IVersionPersonEnumPointers.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_0_Linux.cs" />
+    <Compile Include="Defines\Versions\Steam_14_3_1_Windows.cs" />
+    <Compile Include="Defines\Versions\Steam_14_3_0_Windows.cs" />
+    <Compile Include="Defines\Versions\Steam_14_3_0_Mac.cs" />
+    <Compile Include="Defines\Versions\Steam_14_3_1_Linux.cs" />
+    <Compile Include="Defines\Versions\Steam_14_3_1_Mac.cs" />
+    <Compile Include="Defines\Versions\Steam_15_2_1_Windows.cs" />
+    <Compile Include="Defines\Versions\Steam_15_3_2_Windows.cs" />
+    <Compile Include="Defines\Versions\Steam_15_3_2_Mac.cs" />
+    <Compile Include="Defines\FMProcess.cs" />
+    <Compile Include="Defines\Offsets\CityOffsets.cs" />
+    <Compile Include="Defines\Offsets\ClubOffsets.cs" />
+    <Compile Include="Defines\Offsets\NationOffsets.cs" />
+    <Compile Include="Defines\Offsets\TeamOffsets.cs" />
+    <Compile Include="Defines\Offsets\InjuryOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\PlayerOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\PlayerStatsOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\PersonAttributesOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\ContractOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\ContractClausesOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\ContractBonusOffsets.cs" />
+    <Compile Include="Defines\Offsets\PersonTypes\StaffOffsets.cs" />
+    <Compile Include="Defines\Offsets\Sub-Entities\ClubFinancesOffsets.cs" />
+    <Compile Include="Defines\Offsets\Sub-Entities\RivalNationOffsets.cs" />
+    <Compile Include="Defines\Offsets\Sub-Entities\NationTaxRulesOffsets.cs" />
     <Compile Include="Entities\Global.cs" />
     <Compile Include="Entities\Ingame\BaseObject.cs" />
     <Compile Include="Entities\Ingame\City.cs" />
@@ -62,40 +77,42 @@
     <Compile Include="Entities\Ingame\Nation.cs" />
     <Compile Include="Entities\Ingame\PlayerStats.cs" />
     <Compile Include="Entities\Ingame\Team.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\Ingame\Injury.cs" />
+    <Compile Include="Entities\Ingame\PersonAttributes.cs" />
+    <Compile Include="Entities\Ingame\Contract.cs" />
+    <Compile Include="Entities\Ingame\ContractClauses.cs" />
+    <Compile Include="Entities\Ingame\ContractBonus.cs" />
+    <Compile Include="Entities\Ingame\Persons\Player.cs" />
+    <Compile Include="Entities\Ingame\Persons\PlayerStaff.cs" />
+    <Compile Include="Entities\Ingame\Persons\Staff.cs" />
+    <Compile Include="Entities\Ingame\Person.cs" />
+    <Compile Include="Entities\Ingame\Sub-Entities\NationTaxRule.cs" />
+    <Compile Include="Entities\Ingame\Sub-Entities\RivalNation.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\ICity.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IClub.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IClubFinances.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IContract.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IContractBonus.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IContractClause.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IPerson.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IContinent.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IPlayerStaff.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IPlayer.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IStaff.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IInjury.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\INation.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\INationTaxRule.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IPersonAttributes.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IPlayerStats.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\IRivalNation.cs" />
+    <Compile Include="Entities\Ingame\Interfaces\ITeam.cs" />
     <Compile Include="Utilities\BitwiseOperations.cs" />
     <Compile Include="VirtualMemory\ProcessMemoryAPI.cs" />
     <Compile Include="VirtualMemory\Managers\GameManager.cs" />
     <Compile Include="VirtualMemory\Managers\ObjectManager.cs" />
     <Compile Include="VirtualMemory\Managers\ProcessManager.cs" />
     <Compile Include="VirtualMemory\Managers\PropertyInvoker.cs" />
-    <Compile Include="Defines\Versions\Steam_14_3_0_Windows.cs" />
-    <Compile Include="Defines\Offsets\InjuryOffsets.cs" />
-    <Compile Include="Entities\Ingame\Injury.cs" />
-    <Compile Include="Entities\Ingame\PersonAttributes.cs" />
-    <Compile Include="Entities\Ingame\Contract.cs" />
-    <Compile Include="Defines\Versions\Steam_14_3_0_Mac.cs" />
-    <Compile Include="Entities\Ingame\ContractClauses.cs" />
-    <Compile Include="Entities\Ingame\ContractBonus.cs" />
-    <Compile Include="Defines\Versions\Steam_14_3_1_Linux.cs" />
-    <Compile Include="Defines\Versions\Steam_14_3_1_Mac.cs" />
-    <Compile Include="Defines\Versions\Steam_15_3_2_Mac.cs" />
-    <Compile Include="Defines\Offsets\PersonOffsets.cs" />
-    <Compile Include="Defines\Offsets\PersonTypes\PlayerOffsets.cs" />
-    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\PlayerStatsOffsets.cs" />
-    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\PersonAttributesOffsets.cs" />
-    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\ContractOffsets.cs" />
-    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\ContractClausesOffsets.cs" />
-    <Compile Include="Defines\Offsets\PersonTypes\Sub-Entities\ContractBonusOffsets.cs" />
-    <Compile Include="Defines\Offsets\PersonTypes\StaffOffsets.cs" />
-    <Compile Include="Entities\Ingame\Persons\Player.cs" />
-    <Compile Include="Entities\Ingame\Persons\PlayerStaff.cs" />
-    <Compile Include="Entities\Ingame\Persons\Staff.cs" />
-    <Compile Include="Entities\Ingame\Person.cs" />
-    <Compile Include="Defines\Offsets\Sub-Entities\NationTaxRulesOffsets.cs" />
-    <Compile Include="Entities\Ingame\Sub-Entities\NationTaxRule.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="FMScoutFramework.csproj" />
     <None Include="FMScoutFramework.sln" />
@@ -103,8 +120,5 @@
     <None Include="app.config" />
     <None Include="VirtualMemory\ExternalSharedLibraries\libprocessmemoryapi.dylib" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Entities\Ingame\Persons\" />
-  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,12 +1,13 @@
 ﻿using System;
 using FMScoutFramework.Core.Entities.GameVersions;
+using FMScoutFramework.Core.Entities.InGame.Interfaces;
 using FMScoutFramework.Core.Managers;
 using FMScoutFramework.Core.Offsets;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
-	public class PersonAttributes : BaseObject
-	{
+	public class PersonAttributes : BaseObject, IPersonAttributes
+    {
 		public PersonAttributes (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)
 		{	}

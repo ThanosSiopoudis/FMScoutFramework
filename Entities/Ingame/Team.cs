@@ -3,12 +3,13 @@ using FMScoutFramework.Core.Entities.GameVersions;
 using FMScoutFramework.Core.Managers;
 using FMScoutFramework.Core.Offsets;
 using FMScoutFramework.Core.Attributes;
+using FMScoutFramework.Core.Entities.InGame.Interfaces;
 using FMScoutFramework.Core.Utilities;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
-	public class Team : BaseObject
-	{
+	public class Team : BaseObject, ITeam
+    {
 		public Team (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)
 		{	}

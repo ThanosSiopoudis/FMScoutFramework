@@ -174,7 +174,8 @@ namespace FMScoutFramework.Core.Managers
 				fmProcess.VersionDescription = fmProcess.Process.MainModule.FileVersionInfo.ProductVersion;
 
 				// Search for the current version
-				foreach (var versionType in Assembly.GetCallingAssembly().GetTypes().Where(t => typeof(IIVersion).IsAssignableFrom(t))) {
+			    var versTypes = Assembly.GetCallingAssembly().GetTypes().Where(t => typeof (IIVersion).IsAssignableFrom(t));
+                foreach (var versionType in versTypes) {
 					if (versionType.IsInterface)
 						continue;
 					var instance = (IIVersion)Activator.CreateInstance (versionType);

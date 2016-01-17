@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Globalization;
 using FMScoutFramework.Core.Entities.GameVersions;
+using FMScoutFramework.Core.Entities.InGame.Interfaces;
 using FMScoutFramework.Core.Managers;
 using FMScoutFramework.Core.Offsets;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
-	public class ContractClause : BaseObject
-	{
+	public class ContractClause : BaseObject, IContractClause
+    {
 		public ContractClause (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)
 		{	}

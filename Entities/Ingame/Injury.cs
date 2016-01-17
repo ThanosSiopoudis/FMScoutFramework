@@ -1,12 +1,13 @@
 ﻿using System;
 using FMScoutFramework.Core.Entities.GameVersions;
+using FMScoutFramework.Core.Entities.InGame.Interfaces;
 using FMScoutFramework.Core.Managers;
 using FMScoutFramework.Core.Offsets;
 
 namespace FMScoutFramework.Core.Entities.InGame
 {
-	public class Injury : BaseObject
-	{
+	public class Injury : BaseObject, IInjury
+    {
 		public Injury (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)
 		{	}
