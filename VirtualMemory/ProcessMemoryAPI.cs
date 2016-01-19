@@ -18,7 +18,7 @@ namespace FMScoutFramework
 		[DllImport("libprocessmemoryinterface.1.0.so")]
 		public static extern int ReadProcessMemory(int pid, ulong address, ulong length, [In, Out]byte[] buffer);
 
-		public static bool GetBaseAddress (uint ProcessID, out uint buffer, out uint heap, out uint endaddress)
+		public static bool GetBaseAddress (uint ProcessID, out uint buffer, out uint bufferend, out uint heap, out uint endaddress)
 		{
 			// Get access to the mem map file
 			string[] memoryMap = null;
@@ -28,6 +28,7 @@ namespace FMScoutFramework
 			}
 			catch {
 				buffer = 0;
+				bufferend = 0;
 				heap = 0;
 				endaddress = 0;
 				return false;
@@ -40,7 +41,7 @@ namespace FMScoutFramework
 			foreach (string line in memoryMap) {
 				if (line.Contains ("[heap]")) {
 					heapAddressLine = memoryMap [i];
-					staticBlockAddressLine = memoryMap [i - 1];
+					staticBlockAddressLine = memoryMap [i - 3];
 					break;
 				}
 				i++;
@@ -48,6 +49,7 @@ namespace FMScoutFramework
 
 			if (staticBlockAddressLine.Length <= 0) {
 				buffer = 0;
+				bufferend = 0;
 				heap = 0;
 				endaddress = 0;
 				return false;
@@ -55,12 +57,13 @@ namespace FMScoutFramework
 
 			// Now extract the starting address from the memory map
 			try {
-				Regex Pattern = new Regex ("([0-9a-f]*)");
-				String baseAddress = Pattern.Match(staticBlockAddressLine).Groups[0].Value;
-				uint address = UInt32.Parse (baseAddress, System.Globalization.NumberStyles.HexNumber);
-				buffer = address;
+				MatchCollection matches = Regex.Matches(staticBlockAddressLine, "([0-9a-f]+)");
+				String baseAddress = matches[0].ToString();
+				buffer = UInt32.Parse (baseAddress, System.Globalization.NumberStyles.HexNumber);
+				String baseEndAddress = matches[1].ToString();
+				bufferend = UInt32.Parse (baseEndAddress, System.Globalization.NumberStyles.HexNumber);
 
-				MatchCollection matches = Regex.Matches(heapAddressLine, "([0-9a-f]+)");
+				matches = Regex.Matches(heapAddressLine, "([0-9a-f]+)");
 				String heapAddress = matches[0].ToString();
 				heap = UInt32.Parse(heapAddress, System.Globalization.NumberStyles.HexNumber);
 				String end = matches[1].ToString();
@@ -68,6 +71,7 @@ namespace FMScoutFramework
 			}
 			catch {
 				buffer = 0;
+				bufferend = 0;
 				heap = 0;
 				endaddress = 0;
 				return false;

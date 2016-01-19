@@ -14,7 +14,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;MAC;</DefineConstants>
+    <DefineConstants>DEBUG;LINUX;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -112,6 +112,7 @@
     <Compile Include="VirtualMemory\Managers\ObjectManager.cs" />
     <Compile Include="VirtualMemory\Managers\ProcessManager.cs" />
     <Compile Include="VirtualMemory\Managers\PropertyInvoker.cs" />
+    <Compile Include="Defines\Versions\Steam_16_2_0_Linux.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FMScoutFramework.csproj" />

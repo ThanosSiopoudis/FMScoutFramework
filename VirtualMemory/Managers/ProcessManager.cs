@@ -98,9 +98,8 @@ namespace FMScoutFramework.Core.Managers
 		public static byte[] ReadProcessMemory(int address, int length)
 		{
 			byte[] buffer = new byte[length];
-			if (address > fmProcess.BaseAddress) {
-				ProcessMemoryAPI.ReadProcessMemory (FMProcess.Process.Id, (ulong)address, (ulong)length, buffer);
-			}
+			if (ProcessMemoryAPI.ReadProcessMemory (FMProcess.Process.Id, (ulong)address, (ulong)length, buffer) == 0)
+				; // TODO: When things are mature enough, we should add an exception here
 			return buffer;
 		}
 		#endif

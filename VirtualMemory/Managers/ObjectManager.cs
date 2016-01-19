@@ -218,8 +218,7 @@ namespace FMScoutFramework.Core.Managers
 
 			// Let's get the memory addresses now
 			#if LINUX
-			int memoryAddress = ProcessManager.ReadInt32 (compiledObjectPointer.Invoke(GameManager.Version.MemoryAddresses));
-			memoryAddress = ProcessManager.ReadInt32(memoryAddress + GameManager.Version.MemoryAddresses.MainOffset);
+			int memoryAddress = ProcessManager.ReadInt32 (GameManager.Version.MemoryAddresses.MainAddress + GameManager.Version.MemoryAddresses.MainOffset);
             #endif
 
 			#if MAC
