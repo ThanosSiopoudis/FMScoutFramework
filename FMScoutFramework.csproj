@@ -49,7 +49,6 @@
     <Compile Include="Defines\Versions\Steam_14_3_1_Linux.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Mac.cs" />
     <Compile Include="Defines\Versions\Steam_15_2_1_Windows.cs" />
-    <Compile Include="Defines\Versions\Steam_15_3_2_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_15_3_2_Mac.cs" />
     <Compile Include="Defines\FMProcess.cs" />
     <Compile Include="Defines\Offsets\CityOffsets.cs" />
@@ -113,6 +112,8 @@
     <Compile Include="VirtualMemory\Managers\ProcessManager.cs" />
     <Compile Include="VirtualMemory\Managers\PropertyInvoker.cs" />
     <Compile Include="Defines\Versions\Steam_16_2_0_Linux.cs" />
+    <Compile Include="Defines\Versions\Steam_15_3_2_Windows.cs" />
+    <Compile Include="Defines\Versions\Steam_16_2_0_Windows.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FMScoutFramework.csproj" />
