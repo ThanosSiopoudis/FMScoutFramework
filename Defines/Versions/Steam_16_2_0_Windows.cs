@@ -166,7 +166,7 @@ namespace FMScoutFramework.Core.Entities.GameVersions
             [MemoryAddressAttribute(CountLength = 4, BytesToSkip = 0x80)]
             public int Unknown9 { get { return 0x0; } }
 
-            public int CurrentDateTime { get { return 0x2942a92; } }
+            public int CurrentDateTime { get { return 0x2542a92; } }
         }
 
         public class VersionPersonEnumPointers : IVersionPersonEnumPointers
