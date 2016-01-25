@@ -228,7 +228,7 @@ namespace FMScoutFramework.Core.Managers
             // On windows, we have ASLR, so get the main pointer from the static offset
             #if WINDOWS
             int memoryAddress = ProcessManager.ReadInt32(ProcessManager.fmProcess.BaseAddress + GameManager.Version.MemoryAddresses.MainAddress);
-            memoryAddress = ProcessManager.ReadInt32(memoryAddress);
+            //memoryAddress = ProcessManager.ReadInt32(memoryAddress);
             #endif
 
             if (GameManager.Version.MainVersionNumber == "14")

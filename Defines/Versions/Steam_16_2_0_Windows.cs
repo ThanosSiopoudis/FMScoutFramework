@@ -49,7 +49,7 @@ namespace FMScoutFramework.Core.Entities.GameVersions
 
         public class VersionMemoryAddresses : IVersionMemoryAddresses
         {
-			public int MainAddress { get { return 0x2957388; } }
+            public int MainAddress { get { return 0x2557388; } }
             public int MainOffset { get { return 0x0; } }
             public int XorDistance { get { return 0x48; } } // Not XOR but useful
 			public int StringOffset { get { return 0x0; } }
