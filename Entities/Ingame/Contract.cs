@@ -8,12 +8,17 @@ namespace FMScoutFramework.Core.Entities.InGame
 {
 	public class Contract : BaseObject, IContract
     {
+        public ContractOffsets ContractOffsets;
 		public Contract (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)
-		{	}
+		{
+            ContractOffsets = new ContractOffsets(version);
+        }
 		public Contract (int memoryAddress, ArraySegment<byte> originalBytes, IVersion version) 
 			: base(memoryAddress, originalBytes, version)
-		{	}
+		{
+            ContractOffsets = new ContractOffsets(version);
+        }
 
 		public Team Team {
 			get {

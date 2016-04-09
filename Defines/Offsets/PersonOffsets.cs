@@ -111,16 +111,18 @@ namespace FMScoutFramework.Core.Offsets
 		{
 			get
 			{
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux) ||
-					Version.GetType() == typeof(Steam_15_3_2_Mac) ||
-					Version.GetType() == typeof(Steam_15_3_2_Windows))
-					return 0x24;
-				else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-					return 0x178;
-				else
-					return 0x0;
+                if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
+                    Version.GetType() == typeof(Steam_14_3_0_Mac) ||
+                    Version.GetType() == typeof(Steam_14_3_1_Linux) ||
+                    Version.GetType() == typeof(Steam_15_3_2_Mac) ||
+                    Version.GetType() == typeof(Steam_15_3_2_Windows))
+                    return 0x24;
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows))
+                    return 0x44;
+                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
+                    return 0x178;
+                else
+                    return 0x0;
 			}
 		}
 
@@ -128,17 +130,18 @@ namespace FMScoutFramework.Core.Offsets
 		{
 			get
 			{
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux) ||
-					Version.GetType() == typeof(Steam_15_3_2_Mac) ||
-					Version.GetType() == typeof(Steam_15_3_2_Windows) ||
-                    Version.GetType() == typeof(Steam_16_3_0_Windows))
-					return 0x28;
-				else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-					return 0x17C;
-				else
-					return 0x194;
+                if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
+                    Version.GetType() == typeof(Steam_14_3_0_Mac) ||
+                    Version.GetType() == typeof(Steam_14_3_1_Linux) ||
+                    Version.GetType() == typeof(Steam_15_3_2_Mac) ||
+                    Version.GetType() == typeof(Steam_15_3_2_Windows))
+                    return 0x28;
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows))
+                    return 0x48;
+                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
+                    return 0x17C;
+                else
+                    return 0x194;
 			}
 		}
 
@@ -146,17 +149,18 @@ namespace FMScoutFramework.Core.Offsets
 		{
 			get
 			{
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux) ||
-					Version.GetType() == typeof(Steam_15_3_2_Mac) ||
-					Version.GetType() == typeof(Steam_15_3_2_Windows) ||
-                    Version.GetType() == typeof(Steam_16_3_0_Windows))
-					return 0x2C;
-				else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-					return 0x180;
-				else
-					return 0x198;
+                if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
+                    Version.GetType() == typeof(Steam_14_3_0_Mac) ||
+                    Version.GetType() == typeof(Steam_14_3_1_Linux) ||
+                    Version.GetType() == typeof(Steam_15_3_2_Mac) ||
+                    Version.GetType() == typeof(Steam_15_3_2_Windows))
+                    return 0x2C;
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows))
+                    return 0x4C;
+                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
+                    return 0x180;
+                else
+                    return 0x198;
 			}
 		}
 
@@ -164,17 +168,18 @@ namespace FMScoutFramework.Core.Offsets
 		{
 			get
 			{
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux) ||
-					Version.GetType() == typeof(Steam_15_3_2_Mac) ||
-					Version.GetType() == typeof(Steam_15_3_2_Windows) ||
-                    Version.GetType() == typeof(Steam_16_3_0_Windows))
-					return 0x54;
-				else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-					return 0x1A8;
-				else
-					return 0x1C4;
+                if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
+                    Version.GetType() == typeof(Steam_14_3_0_Mac) ||
+                    Version.GetType() == typeof(Steam_14_3_1_Linux) ||
+                    Version.GetType() == typeof(Steam_15_3_2_Mac) ||
+                    Version.GetType() == typeof(Steam_15_3_2_Windows))
+                    return 0x54;
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows))
+                    return 0x74;
+                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
+                    return 0x1A8;
+                else
+                    return 0x1C4;
 			}
 		}
 
@@ -182,17 +187,18 @@ namespace FMScoutFramework.Core.Offsets
 		{
 			get
 			{
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
-					Version.GetType() == typeof(Steam_14_3_0_Mac) ||
-					Version.GetType() == typeof(Steam_14_3_1_Linux) ||
-					Version.GetType() == typeof(Steam_15_3_2_Mac) ||
-					Version.GetType() == typeof(Steam_15_3_2_Windows) ||
-                    Version.GetType() == typeof(Steam_16_3_0_Windows))
-					return 0xBC;
-				else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
-					return 0x200;
-				else
-					return 0x22C;
+                if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
+                    Version.GetType() == typeof(Steam_14_3_0_Mac) ||
+                    Version.GetType() == typeof(Steam_14_3_1_Linux) ||
+                    Version.GetType() == typeof(Steam_15_3_2_Mac) ||
+                    Version.GetType() == typeof(Steam_15_3_2_Windows))
+                    return 0xBC;
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows))
+                    return 0xDC;
+                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
+                    return 0x200;
+                else
+                    return 0x22C;
 			}
 		}
 	}
