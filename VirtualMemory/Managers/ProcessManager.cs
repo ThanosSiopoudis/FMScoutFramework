@@ -323,7 +323,8 @@ namespace FMScoutFramework.Core.Managers
 
         public static void WriteDateTime(DateTime value, int address)
         {
-			WriteInt32 (Converters.DateConverter.ToFmDateTime (value), address, true);
+            WriteInt16(value.DayOfYear, address);
+            WriteInt16(value.Year, address + 2);
         }
 
         public static void WriteInt16(int value, int address)
@@ -369,6 +370,12 @@ namespace FMScoutFramework.Core.Managers
                 buffer[1] = (byte)((value & 0xFF0000) >> 0x10);
                 buffer[0] = (byte)((value & 0xFF000000) >> 0x18);
             }
+            WriteProcessMemory(address, buffer, 4);
+        }
+
+        public static void WriteFloat(float value, int address)
+        {
+            byte[] buffer = BitConverter.GetBytes(value);
             WriteProcessMemory(address, buffer, 4);
         }
 

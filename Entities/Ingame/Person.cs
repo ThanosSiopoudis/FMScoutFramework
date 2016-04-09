@@ -32,6 +32,10 @@ namespace FMScoutFramework.Core.Entities.InGame
 			get {
 				return PropertyInvoker.Get<DateTime> (PersonOffsets.DateOfBirth, OriginalBytes, PersonAddress, DatabaseMode);
 			}
+            set
+            {
+                PropertyInvoker.Set<DateTime>(PersonOffsets.DateOfBirth, OriginalBytes, PersonAddress, DatabaseMode, value);
+            }
 		}
 
 		public int Age {
