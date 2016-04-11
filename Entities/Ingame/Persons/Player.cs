@@ -244,12 +244,20 @@ namespace FMScoutFramework.Core.Entities.InGame
 			get {
 				return PropertyInvoker.Get<ushort> (PlayerOffsets.Weight, OriginalBytes, PlayerAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<ushort>(PlayerOffsets.Weight, OriginalBytes, PlayerAddress, DatabaseMode, value);
+            }
+        }
 
 		public ushort Height {
 			get {
 				return PropertyInvoker.Get<ushort> (PlayerOffsets.Height, OriginalBytes, PlayerAddress, DatabaseMode);
 			}
+            set
+            {
+                PropertyInvoker.Set<ushort>(PlayerOffsets.Height, OriginalBytes, PlayerAddress, DatabaseMode, value);
+            }
 		}
 
 		public byte InternationalApps {
