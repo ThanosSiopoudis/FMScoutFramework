@@ -25,28 +25,50 @@ namespace FMScoutFramework.Core.Entities.InGame
 
 		public int Balance {
 			get {
-				if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
+                if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
                     Version.GetType() == typeof(Steam_14_3_0_Mac) ||
                     Version.GetType() == typeof(Steam_14_3_0_Windows) ||
                     Version.GetType() == typeof(Steam_14_3_1_Linux) ||
                     Version.GetType() == typeof(Steam_14_3_1_Windows))
                 {
-					try{
-						int rotateAmount = ((MemoryAddress + ClubFinancesOffsets.Balance) & 31);
-						UInt32 encryptedBalance = (UInt32)ProcessManager.ReadUInt32 (MemoryAddress + ClubFinancesOffsets.Balance);
-						encryptedBalance = BitwiseOperations.rol (encryptedBalance, rotateAmount);
-						encryptedBalance = (encryptedBalance ^ 0x513130E);
-						encryptedBalance = BitwiseOperations.rol (encryptedBalance, 9);
-						encryptedBalance = ~encryptedBalance;
+                    try {
+                        int rotateAmount = ((MemoryAddress + ClubFinancesOffsets.Balance) & 31);
+                        UInt32 encryptedBalance = (UInt32)ProcessManager.ReadUInt32(MemoryAddress + ClubFinancesOffsets.Balance);
+                        encryptedBalance = BitwiseOperations.rol(encryptedBalance, rotateAmount);
+                        encryptedBalance = (encryptedBalance ^ 0x513130E);
+                        encryptedBalance = BitwiseOperations.rol(encryptedBalance, 9);
+                        encryptedBalance = ~encryptedBalance;
 
-						return (int)encryptedBalance;
-					}
-					catch {
-						return 0;
-					}
-				} else {
-					return 0;
-				}
+                        return (int)encryptedBalance;
+                    }
+                    catch {
+                        return 0;
+                    }
+                }
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    try
+                    {
+                        int rotateAmount = ((MemoryAddress + ClubFinancesOffsets.Balance) & 0x1f);
+                        uint encryptedBalance = (uint)ProcessManager.ReadInt32(MemoryAddress + ClubFinancesOffsets.Balance);
+
+                        encryptedBalance = BitwiseOperations.rol(encryptedBalance, rotateAmount);
+                        encryptedBalance = (encryptedBalance ^ 0xFAECECF1);
+                        encryptedBalance = ~encryptedBalance;
+                        encryptedBalance = BitwiseOperations.ror(encryptedBalance, 0x17);
+                        encryptedBalance = ~encryptedBalance;
+
+                        return (int)encryptedBalance;
+                    }
+                    catch
+                    {
+                        return 0;
+                    }
+                }
+                else {
+                    return 0;
+                }
 			}
 		}
 

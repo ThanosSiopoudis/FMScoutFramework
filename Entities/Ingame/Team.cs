@@ -10,12 +10,17 @@ namespace FMScoutFramework.Core.Entities.InGame
 {
 	public class Team : BaseObject, ITeam
     {
+        public TeamOffsets TeamOffsets;
 		public Team (int memoryAddress, IVersion version) 
 			: base(memoryAddress, version)
-		{	}
+		{
+            this.TeamOffsets = new TeamOffsets(version);
+        }
 		public Team (int memoryAddress, ArraySegment<byte> originalBytes, IVersion version) 
 			: base(memoryAddress, originalBytes, version)
-		{	}
+		{
+            this.TeamOffsets = new TeamOffsets(version);
+        }
 
 		public int RowID {
 			get {
@@ -35,7 +40,7 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
-		private Club Club {
+		public Club Club {
 			get {
 				return PropertyInvoker.GetPointer<Club> (TeamOffsets.Club, OriginalBytes, MemoryAddress, DatabaseMode, Version);
 			}
@@ -74,7 +79,28 @@ namespace FMScoutFramework.Core.Entities.InGame
 					catch {
 						return 0;
 					}
-				} else {
+				}
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    try
+                    {
+                        int rotateAmount = ((MemoryAddress + TeamOffsets.Reputation) & 0xf);
+                        uint encryptedRep = PropertyInvoker.Get<ushort>(TeamOffsets.Reputation, OriginalBytes, MemoryAddress, DatabaseMode);
+                        encryptedRep = (encryptedRep ^ 0x144b);
+                        encryptedRep = ~encryptedRep & 0xffff;
+                        encryptedRep = BitwiseOperations.rol_short(encryptedRep, 5) & 0xffff;
+                        encryptedRep = (encryptedRep ^ 0x9634);
+                        encryptedRep = BitwiseOperations.ror_short(encryptedRep, rotateAmount) & 0xffff;
+
+                        return (ushort)encryptedRep;
+                    }
+                    catch
+                    {
+                        return 0;
+                    }
+                }
+                else {
 					return 0;
 				}
 			}
