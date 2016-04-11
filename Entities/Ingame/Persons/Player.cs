@@ -125,19 +125,31 @@ namespace FMScoutFramework.Core.Entities.InGame
 			get {
 				return PropertyInvoker.Get<short> (PlayerOffsets.HomeReputation, OriginalBytes, PlayerAddress, DatabaseMode);
 			}
+            set
+            {
+                PropertyInvoker.Set<short>(PlayerOffsets.HomeReputation, OriginalBytes, PlayerAddress, DatabaseMode, value);
+            }
 		}
 
 		public short CurrentReputation {
 			get {
 				return PropertyInvoker.Get<short> (PlayerOffsets.CurrentReputation, OriginalBytes, PlayerAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<short>(PlayerOffsets.CurrentReputation, OriginalBytes, PlayerAddress, DatabaseMode, value);
+            }
+        }
 
 		public short WorldReputation {
 			get {
 				return PropertyInvoker.Get<short> (PlayerOffsets.WorldReputation, OriginalBytes, PlayerAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<short>(PlayerOffsets.WorldReputation, OriginalBytes, PlayerAddress, DatabaseMode, value);
+            }
+        }
 
 		public ushort CA {
 			get {
