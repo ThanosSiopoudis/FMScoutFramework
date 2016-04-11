@@ -49,6 +49,11 @@ namespace FMScoutFramework.Core.Offsets
 					Version.GetType () == typeof(Steam_15_3_2_Windows)) {
 					return 0x90;
 				}
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0x9c;
+                }
                 else
                     return 0xDC;
             }
@@ -136,6 +141,11 @@ namespace FMScoutFramework.Core.Offsets
 					Version.GetType () == typeof(Steam_15_3_2_Windows)) {
 					return 0xE0;
 				}
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xec;
+                }
                 else
                     return 0x130;
             }
@@ -155,6 +165,11 @@ namespace FMScoutFramework.Core.Offsets
 					Version.GetType () == typeof(Steam_15_3_2_Windows)) {
 					return 0xE2;
 				}
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xee;
+                }
                 else
                     return 0x132;
             }
@@ -174,6 +189,11 @@ namespace FMScoutFramework.Core.Offsets
 					Version.GetType () == typeof(Steam_15_3_2_Windows)) {
 					return 0xE4;
 				}
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xf0;
+                }
                 else
                     return 0x134;
             }
@@ -193,6 +213,11 @@ namespace FMScoutFramework.Core.Offsets
 					Version.GetType () == typeof(Steam_15_3_2_Windows)) {
 					return 0xE6;
 				}
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xf2;
+                }
                 else
                     return 0x136;
             }
@@ -212,6 +237,11 @@ namespace FMScoutFramework.Core.Offsets
 					Version.GetType () == typeof(Steam_15_3_2_Windows)) {
 					return 0xE8;
 				}
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xf4;
+                }
                 else
                     return 0x138;
             }
@@ -231,6 +261,11 @@ namespace FMScoutFramework.Core.Offsets
 					Version.GetType () == typeof(Steam_15_3_2_Windows)) {
 					return 0xEA;
 				}
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xf6;
+                }
                 else
                     return 0x13A;
             }
@@ -250,6 +285,11 @@ namespace FMScoutFramework.Core.Offsets
 					Version.GetType () == typeof(Steam_15_3_2_Windows)) {
 					return 0xEC;
 				}
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xf8;
+                }
                 else
                     return 0x13C;
             }
@@ -269,6 +309,11 @@ namespace FMScoutFramework.Core.Offsets
 					Version.GetType () == typeof(Steam_15_3_2_Windows)) {
 					return 0xEE;
 				}
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xfa;
+                }
                 else
                     return 0x13E;
             }
@@ -330,7 +375,12 @@ namespace FMScoutFramework.Core.Offsets
 					return 0x200;
 				else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
 					return 0x214;
-				else
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xe0;
+                }
+                else
 					return 0x240;
 			}
 		}
@@ -347,7 +397,12 @@ namespace FMScoutFramework.Core.Offsets
 					return 0x201;
 				else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
 					return 0x215;
-				else
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xe1;
+                }
+                else
 					return 0x241;
 			}
 		}
@@ -364,7 +419,12 @@ namespace FMScoutFramework.Core.Offsets
 					return 0x202;
 				else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
 					return 0x216;
-				else
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xe2;
+                }
+                else
 					return 0x242;
 			}
 		}
@@ -381,7 +441,12 @@ namespace FMScoutFramework.Core.Offsets
 					return 0x203;
 				else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
 					return 0x217;
-				else
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0xe3;
+                }
+                else
 					return 0x243;
 			}
 		}
