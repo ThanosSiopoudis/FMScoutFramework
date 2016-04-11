@@ -49,6 +49,7 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Defines\Versions\Steam_16_3_1_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_16_3_0_Windows.cs" />
     <Compile Include="FMCore.cs" />
     <Compile Include="Attributes\MemoryAddressAttribute.cs" />
