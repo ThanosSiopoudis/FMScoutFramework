@@ -215,11 +215,7 @@ namespace FMScoutFramework.Core.Entities.InGame
                            Version.GetType() == typeof(Steam_16_3_1_Windows))
                 {
                     /*
-                    encryptedVal = BitwiseOperations.rol_short(encryptedVal, rotateAmount);
-                    encryptedVal = ~encryptedVal;
-                    encryptedVal = encryptedVal ^ 0xdf2c;
-                    encryptedVal = BitwiseOperations.ror_short(encryptedVal, 2);
-                    encryptedVal = encryptedVal ^ 0x542e; */
+ */
 
                     encryptedVal = encryptedVal ^ 0x542e;
                     encryptedVal = BitwiseOperations.rol_short(encryptedVal, 2);
@@ -233,6 +229,25 @@ namespace FMScoutFramework.Core.Entities.InGame
                     return 0;
                 }
 			}
+            set
+            {
+                int rotateAmount = ((PlayerAddress + PlayerOffsets.CA) & 0xf);
+                uint encryptedVal = value;
+                try
+                {
+                    encryptedVal = BitwiseOperations.rol_short(encryptedVal, rotateAmount);
+                    encryptedVal = ~encryptedVal & 0xffff;
+                    encryptedVal = encryptedVal ^ 0xdf2c;
+                    encryptedVal = BitwiseOperations.ror_short(encryptedVal, 2);
+                    encryptedVal = encryptedVal ^ 0x542e;
+                }
+                catch
+                {
+                    // TODO: Add exception here
+                }
+
+                PropertyInvoker.Set<ushort>(PlayerOffsets.CA, OriginalBytes, PlayerAddress, DatabaseMode, (ushort)encryptedVal);
+            }
 		}
 
 		public ushort PA {
@@ -297,6 +312,29 @@ namespace FMScoutFramework.Core.Entities.InGame
 					return 0;
 				}
 			}
+            set
+            {
+                uint encryptedVal = value;
+                int rotateAmount = ((PlayerAddress + PlayerOffsets.PA) & 0xf);
+                if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    try
+                    {
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
+                        encryptedVal = ~encryptedVal & 0xFFFF;
+                        encryptedVal = BitwiseOperations.rol_short(encryptedVal, 11);
+                        encryptedVal = encryptedVal ^ 0x4B3F;
+                        encryptedVal = BitwiseOperations.rol_short(encryptedVal, rotateAmount);
+
+                        PropertyInvoker.Set<ushort>(PlayerOffsets.PA, OriginalBytes, PlayerAddress, DatabaseMode, (ushort)encryptedVal);
+                    }
+                    catch
+                    {
+                        // TODO: Add an exception here
+                    }
+                }
+            }
 		}
 
 		public ushort Weight {
