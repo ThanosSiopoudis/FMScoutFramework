@@ -47,7 +47,7 @@ namespace FMScoutFramework.Core.Managers
                 int offsetToFind = memoryAddress + offset;
 
                 if (typeof(Int16) == typeof(T))
-                    ProcessManager.WriteInt16((int)(object)value, offsetToFind);
+                    ProcessManager.WriteInt16((short)(object)value, offsetToFind);
                 else if (typeof(Byte) == typeof(T))
                     ProcessManager.WriteByte((byte)(object)value, offsetToFind);
                 else if (typeof(DateTime) == typeof(T))
