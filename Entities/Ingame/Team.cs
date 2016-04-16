@@ -87,11 +87,19 @@ namespace FMScoutFramework.Core.Entities.InGame
                     {
                         int rotateAmount = ((MemoryAddress + TeamOffsets.Reputation) & 0xf);
                         uint encryptedRep = PropertyInvoker.Get<ushort>(TeamOffsets.Reputation, OriginalBytes, MemoryAddress, DatabaseMode);
+                        /* Encryption
                         encryptedRep = (encryptedRep ^ 0x144b);
                         encryptedRep = ~encryptedRep & 0xffff;
                         encryptedRep = BitwiseOperations.rol_short(encryptedRep, 5) & 0xffff;
                         encryptedRep = (encryptedRep ^ 0x9634);
                         encryptedRep = BitwiseOperations.ror_short(encryptedRep, rotateAmount) & 0xffff;
+                        */
+
+                        encryptedRep = BitwiseOperations.rol_short(encryptedRep, rotateAmount) & 0xffff;
+                        encryptedRep = (encryptedRep ^ 0x9634);
+                        encryptedRep = BitwiseOperations.ror_short(encryptedRep, 5) & 0xffff;
+                        encryptedRep = ~encryptedRep & 0xffff;
+                        encryptedRep = (encryptedRep ^ 0x144b);
 
                         return (ushort)encryptedRep;
                     }
