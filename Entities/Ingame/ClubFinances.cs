@@ -70,54 +70,110 @@ namespace FMScoutFramework.Core.Entities.InGame
                     return 0;
                 }
 			}
+            set
+            {
+                if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    try
+                    {
+                        int rotateAmount = ((MemoryAddress + ClubFinancesOffsets.Balance) & 0x1f);
+                        uint encryptedBalance = (uint)value;
+
+                        encryptedBalance = ~encryptedBalance;
+                        encryptedBalance = BitwiseOperations.rol(encryptedBalance, 0x17);
+                        encryptedBalance = ~encryptedBalance;
+                        encryptedBalance = (encryptedBalance ^ 0xFAECECF1);
+                        encryptedBalance = BitwiseOperations.ror(encryptedBalance, rotateAmount);
+
+                        PropertyInvoker.Set<int>(ClubFinancesOffsets.Balance, OriginalBytes, MemoryAddress, DatabaseMode, value);
+                    }
+                    catch
+                    {
+                        // TODO: Add exception
+                    }
+                }
+            }
 		}
 
 		public int RemainingBudget {
 			get {
 				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.RemainingBudget, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<Int32>(ClubFinancesOffsets.RemainingBudget, OriginalBytes, MemoryAddress, DatabaseMode, value);
+            }
+        }
 
 		public int SeasonTransferFunds {
 			get {
 				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.SeasonTransferFunds, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<Int32>(ClubFinancesOffsets.SeasonTransferFunds, OriginalBytes, MemoryAddress, DatabaseMode, value);
+            }
+        }
 
 		public int TransferIncomePercentage {
 			get {
 				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.TransferIncomePercentage, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<Int32>(ClubFinancesOffsets.TransferIncomePercentage, OriginalBytes, MemoryAddress, DatabaseMode, value);
+            }
+        }
 
 		public int YouthGrantIncome {
 			get {
 				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.YouthGrantIncome, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<Int32>(ClubFinancesOffsets.YouthGrantIncome, OriginalBytes, MemoryAddress, DatabaseMode, value);
+            }
+        }
 
 		public int WeeklyWageBudget {
 			get {
 				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.WeeklyWageBudget, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<Int32>(ClubFinancesOffsets.WeeklyWageBudget, OriginalBytes, MemoryAddress, DatabaseMode, value);
+            }
+        }
 
 		public int HighestWagePaid {
 			get {
 				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.HighestWagePaid, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<Int32>(ClubFinancesOffsets.HighestWagePaid, OriginalBytes, MemoryAddress, DatabaseMode, value);
+            }
+        }
 
 		public int LatestSeasonTicketsAddress {
 			get {
 				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.LatestSeasonTicketSales, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<Int32>(ClubFinancesOffsets.LatestSeasonTicketSales, OriginalBytes, MemoryAddress, DatabaseMode, value);
+            }
+        }
 
 		public int LastestSeasonTickets {
 			get {
 				return PropertyInvoker.Get<Int32> (0x0, OriginalBytes, this.LatestSeasonTicketsAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<Int32>(0x0, OriginalBytes, this.LatestSeasonTicketsAddress, DatabaseMode, value);
+            }
+        }
 	}
 }
