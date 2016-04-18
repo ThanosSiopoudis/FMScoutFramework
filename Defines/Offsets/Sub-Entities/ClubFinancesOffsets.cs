@@ -23,9 +23,6 @@ namespace FMScoutFramework.Core.Offsets
 		public const short SeasonTransferFunds = 0x40;
 		public const short TransferIncomePercentage = 0x44;
 		public const short YouthGrantIncome = 0x4C;
-		public const short WeeklyWageBudget = 0x70;
-        public const short HighestWage = 0x74;
-        public const short WeeklyWageBudgetUsed = 0x78;
 		public const short HighestWagePaid = 0x84;
 
         public short LatestSeasonTicketSales
@@ -49,6 +46,49 @@ namespace FMScoutFramework.Core.Offsets
                 return 0x0;
             }
         }
-	}
+
+        public short WeeklyWageBudget
+        {
+            get
+            {
+                if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0x74;
+                }
+
+                return 0x70;
+            }
+        }
+
+        public short HighestWage
+        {
+            get
+            {
+                if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0x78;
+                }
+
+                return 0x74;
+            }
+        }
+
+        public short WeeklyWageBudgetUsed
+        {
+            get
+            {
+                if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    return 0x7c;
+                }
+
+                return 0x78;
+            }
+        }
+
+    }
 }
 
