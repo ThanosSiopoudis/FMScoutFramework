@@ -146,7 +146,19 @@ namespace FMScoutFramework.Core.Entities.InGame
             }
         }
 
-		public int HighestWagePaid {
+        public int HighestWage
+        {
+            get
+            {
+                return PropertyInvoker.Get<Int32>(ClubFinancesOffsets.HighestWage, OriginalBytes, MemoryAddress, DatabaseMode);
+            }
+            set
+            {
+                PropertyInvoker.Set<Int32>(ClubFinancesOffsets.HighestWage, OriginalBytes, MemoryAddress, DatabaseMode, value);
+            }
+        }
+
+        public int HighestWagePaid {
 			get {
 				return PropertyInvoker.Get<Int32> (ClubFinancesOffsets.HighestWagePaid, OriginalBytes, MemoryAddress, DatabaseMode);
 			}
