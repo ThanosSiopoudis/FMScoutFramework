@@ -73,6 +73,11 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
+        public void Heal()
+        {
+            ProcessManager.ResizeArray(InjuriesAddress, 0);
+        }
+
 		public Int32 BansAddress {
 			get {
 				return PropertyInvoker.Get<Int32> (PlayerOffsets.BansOffset, OriginalBytes, InjuriesAddress, DatabaseMode);
