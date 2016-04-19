@@ -389,6 +389,17 @@ namespace FMScoutFramework.Core.Managers
         {
             WriteProcessMemory(address, value, 4);
         }
+
+        public static void ResizeArray(int currentAddress, int newLength)
+        {
+            ResizeArray(currentAddress, 0x4, newLength);
+        }
+
+        public static void ResizeArray(int currentAddress, int objectLength, int newLength)
+        {
+            int addressOne = ProcessManager.ReadInt32(currentAddress);
+            ProcessManager.WriteInt32(addressOne + objectLength * newLength, currentAddress + 0x4);
+        }
         #endregion
 
         static Dictionary<Type, Func<byte[], int, object>> readFromBufferCache = new Dictionary<Type, Func<byte[], int, object>> ();
