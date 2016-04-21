@@ -21,7 +21,7 @@ namespace FMScoutFramework.Core.Utilities
 
 		public static uint rol_short(uint value, int bits)
 		{
-			return ((value << bits) | (value >> (16 - bits)) & 0xFFFF);
+			return ((value << bits) | (value >> (16 - bits)) & 0xFFFF) & 0xffff;
 		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Linux-Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E74FE82A-2E12-4C51-AD24-7D2DDE5C36A6}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -9,31 +9,48 @@
     <AssemblyName>FMScoutFramework</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux-Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;MAC;</DefineConstants>
+    <DefineConstants>DEBUG;LINUX;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux-Release|AnyCPU' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>RELEASE;LINUX;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DefineConstants>RELEASE;MAC;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows-Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Windows-Debug</OutputPath>
+    <DefineConstants>DEBUG;WINDOWS;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows-Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Windows-Release</OutputPath>
+    <DefineConstants>RELEASE;WINDOWS;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Defines\Versions\Steam_16_3_1_Windows.cs" />
+    <Compile Include="Defines\Versions\Steam_16_3_0_Windows.cs" />
     <Compile Include="FMCore.cs" />
     <Compile Include="Attributes\MemoryAddressAttribute.cs" />
     <Compile Include="Converters\DateConverter.cs" />
@@ -49,7 +66,6 @@
     <Compile Include="Defines\Versions\Steam_14_3_1_Linux.cs" />
     <Compile Include="Defines\Versions\Steam_14_3_1_Mac.cs" />
     <Compile Include="Defines\Versions\Steam_15_2_1_Windows.cs" />
-    <Compile Include="Defines\Versions\Steam_15_3_2_Windows.cs" />
     <Compile Include="Defines\Versions\Steam_15_3_2_Mac.cs" />
     <Compile Include="Defines\FMProcess.cs" />
     <Compile Include="Defines\Offsets\CityOffsets.cs" />
@@ -112,6 +128,9 @@
     <Compile Include="VirtualMemory\Managers\ObjectManager.cs" />
     <Compile Include="VirtualMemory\Managers\ProcessManager.cs" />
     <Compile Include="VirtualMemory\Managers\PropertyInvoker.cs" />
+    <Compile Include="Defines\Versions\Steam_16_2_0_Linux.cs" />
+    <Compile Include="Defines\Versions\Steam_15_3_2_Windows.cs" />
+    <Compile Include="Defines\Versions\Steam_16_2_0_Windows.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FMScoutFramework.csproj" />

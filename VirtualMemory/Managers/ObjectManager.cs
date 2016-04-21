@@ -218,8 +218,7 @@ namespace FMScoutFramework.Core.Managers
 
 			// Let's get the memory addresses now
 			#if LINUX
-			int memoryAddress = ProcessManager.ReadInt32 (compiledObjectPointer.Invoke(GameManager.Version.MemoryAddresses));
-			memoryAddress = ProcessManager.ReadInt32(memoryAddress + GameManager.Version.MemoryAddresses.MainOffset);
+			int memoryAddress = ProcessManager.ReadInt32 (GameManager.Version.MemoryAddresses.MainAddress + GameManager.Version.MemoryAddresses.MainOffset);
             #endif
 
 			#if MAC
@@ -229,7 +228,7 @@ namespace FMScoutFramework.Core.Managers
             // On windows, we have ASLR, so get the main pointer from the static offset
             #if WINDOWS
             int memoryAddress = ProcessManager.ReadInt32(ProcessManager.fmProcess.BaseAddress + GameManager.Version.MemoryAddresses.MainAddress);
-            memoryAddress = ProcessManager.ReadInt32(memoryAddress);
+            //memoryAddress = ProcessManager.ReadInt32(memoryAddress);
             #endif
 
             if (GameManager.Version.MainVersionNumber == "14")

@@ -36,7 +36,37 @@ namespace FMScoutFramework.Core.Managers
 			}
 		}
 
-		public static string GetString(int offset, int additionalStringOffset, ArraySegment<byte> baseObject, int memoryAddress, DatabaseModeEnum databaseMode)
+        public static void Set<T>(int offset, ArraySegment<byte> baseObject, int memoryAddress, DatabaseModeEnum databaseMode, T value)
+        {
+            if (databaseMode == DatabaseModeEnum.Cached)
+            {
+                throw new NotImplementedException();
+            }
+            else
+            {
+                int offsetToFind = memoryAddress + offset;
+
+                if (typeof(Int16) == typeof(T))
+                    ProcessManager.WriteInt16((short)(object)value, offsetToFind);
+                else if (typeof(Byte) == typeof(T))
+                    ProcessManager.WriteByte((byte)(object)value, offsetToFind);
+                else if (typeof(DateTime) == typeof(T))
+                    ProcessManager.WriteDateTime((DateTime)(object)value, offsetToFind);
+                else if (typeof(Int32) == typeof(T))
+                    ProcessManager.WriteInt32((int)(object)value, offsetToFind);
+                else if (typeof(SByte) == typeof(T))
+                    ProcessManager.WriteSByte((sbyte)(object)value, offsetToFind);
+                else if (typeof(float) == typeof(T))
+                    ProcessManager.WriteFloat((float)(object)value, offsetToFind);
+                else if (typeof(UInt32) == typeof(T))
+                    ProcessManager.WriteInt32((int)(object)value, offsetToFind);
+                else if (typeof(ushort) == typeof(T))
+                    ProcessManager.WriteInt16((ushort)(object)value, offsetToFind);
+            }
+        }
+
+
+        public static string GetString(int offset, int additionalStringOffset, ArraySegment<byte> baseObject, int memoryAddress, DatabaseModeEnum databaseMode)
 		{
 			if (databaseMode == DatabaseModeEnum.Cached)
 				return ProcessManager.ReadString (baseObject, offset, additionalStringOffset);

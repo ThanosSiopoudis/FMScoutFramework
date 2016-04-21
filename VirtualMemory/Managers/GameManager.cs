@@ -43,9 +43,10 @@ namespace FMScoutFramework.Core.Managers
 
 			if (fmProcesses.Length > 0) {
 				uint buffer;
+				uint bufferend;
 				uint heap;
 				uint endaddress;
-				if (ProcessMemoryAPI.GetBaseAddress (pid, out buffer, out heap, out endaddress)) {
+				if (ProcessMemoryAPI.GetBaseAddress (pid, out buffer, out bufferend, out heap, out endaddress)) {
 					fmProcess.Process = fmProcesses [0];
 					fmProcess.BaseAddress = (int)buffer;
 					fmProcess.HeapAddress = (int)heap;
@@ -68,30 +69,19 @@ namespace FMScoutFramework.Core.Managers
 			}
 
 			if (!fmLoaded) {
-				int i;
 				// Try to find info about the version
 				// Lookup the objects in the memory
-				for (i = fmProcess.BaseAddress; i < fmProcess.HeapAddress; i += 4) {
-					int memoryAddress = ProcessManager.ReadInt32 (i);
-					if (memoryAddress > fmProcess.BaseAddress && memoryAddress < fmProcess.EndPoint) {
-						memoryAddress = ProcessManager.ReadInt32 (memoryAddress + 0x1C);
-						if (memoryAddress < fmProcess.BaseAddress || memoryAddress > fmProcess.EndPoint)
-							continue;
-						int xorValueOne = ProcessManager.ReadInt32 (memoryAddress + 0x2C + 0x4);
-						int xorValueTwo = ProcessManager.ReadInt32 (memoryAddress + 0x2C);
-						memoryAddress = xorValueTwo ^ xorValueOne;
-						if (memoryAddress < fmProcess.BaseAddress || memoryAddress > fmProcess.EndPoint)
-							continue;
-						memoryAddress = ProcessManager.ReadInt32 (memoryAddress + 0x54);
-						if (memoryAddress < fmProcess.BaseAddress || memoryAddress > fmProcess.EndPoint)
-							continue;
-						int numberOfObjects = ProcessManager.ReadArrayLength (memoryAddress);
-						if (numberOfObjects != 7)
-							continue;
-						else
+				for (int i = fmProcess.BaseAddress; i < fmProcess.EndPoint - 4; i += 4) {
+					try {
+						int continents = TryGetPointerObjects(i, 0x1c, fmProcess);
+						if (continents == 7)
+						{
 							Debug.WriteLine ("Found a candidate @ 0x{0:X}", i);
-					} else
-						continue;
+							Debug.WriteLine ("Persons: {0}", TryGetPointerObjects(i, 0x3c, fmProcess));
+						}
+					}
+					catch {
+					}
 				}
 			}
 
@@ -174,8 +164,7 @@ namespace FMScoutFramework.Core.Managers
 				fmProcess.VersionDescription = fmProcess.Process.MainModule.FileVersionInfo.ProductVersion;
 
 				// Search for the current version
-			    var versTypes = Assembly.GetCallingAssembly().GetTypes().Where(t => typeof (IIVersion).IsAssignableFrom(t));
-                foreach (var versionType in versTypes) {
+				foreach (var versionType in Assembly.GetCallingAssembly().GetTypes().Where(t => typeof(IIVersion).IsAssignableFrom(t))) {
 					if (versionType.IsInterface)
 						continue;
 					var instance = (IIVersion)Activator.CreateInstance (versionType);
@@ -304,7 +293,15 @@ namespace FMScoutFramework.Core.Managers
 				return numberOfObjects;
 			}
 			#endif
-            return 0;
+			#if LINUX
+			int memoryAddress = ProcessManager.ReadInt32 (address);
+			memoryAddress = ProcessManager.ReadInt32(memoryAddress + offset);
+			memoryAddress = ProcessManager.ReadInt32(memoryAddress + 0x5c);
+
+			int numberOfObjects = ProcessManager.ReadArrayLength(memoryAddress);
+			return numberOfObjects;
+			#endif
+			return 0;
         }
 	}
 }

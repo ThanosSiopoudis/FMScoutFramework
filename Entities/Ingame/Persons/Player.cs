@@ -73,6 +73,11 @@ namespace FMScoutFramework.Core.Entities.InGame
 			}
 		}
 
+        public void Heal()
+        {
+            ProcessManager.ResizeArray(InjuriesAddress, 0);
+        }
+
 		public Int32 BansAddress {
 			get {
 				return PropertyInvoker.Get<Int32> (PlayerOffsets.BansOffset, OriginalBytes, InjuriesAddress, DatabaseMode);
@@ -125,131 +130,236 @@ namespace FMScoutFramework.Core.Entities.InGame
 			get {
 				return PropertyInvoker.Get<short> (PlayerOffsets.HomeReputation, OriginalBytes, PlayerAddress, DatabaseMode);
 			}
+            set
+            {
+                PropertyInvoker.Set<short>(PlayerOffsets.HomeReputation, OriginalBytes, PlayerAddress, DatabaseMode, value);
+            }
 		}
 
 		public short CurrentReputation {
 			get {
 				return PropertyInvoker.Get<short> (PlayerOffsets.CurrentReputation, OriginalBytes, PlayerAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<short>(PlayerOffsets.CurrentReputation, OriginalBytes, PlayerAddress, DatabaseMode, value);
+            }
+        }
 
 		public short WorldReputation {
 			get {
 				return PropertyInvoker.Get<short> (PlayerOffsets.WorldReputation, OriginalBytes, PlayerAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<short>(PlayerOffsets.WorldReputation, OriginalBytes, PlayerAddress, DatabaseMode, value);
+            }
+        }
 
 		public ushort CA {
 			get {
 				int rotateAmount = ((PlayerAddress + PlayerOffsets.CA) & 15);
 				uint encryptedVal = PropertyInvoker.Get<ushort> (PlayerOffsets.CA, OriginalBytes, PlayerAddress, DatabaseMode);
-				if (Version.GetType () == typeof(Steam_14_3_0_Linux) ||
-				    Version.GetType () == typeof(Steam_14_3_0_Windows) ||
-				    Version.GetType () == typeof(Steam_14_3_0_Mac) ||
-				    Version.GetType () == typeof(Steam_14_3_1_Linux) ||
-				    Version.GetType () == typeof(Steam_14_3_1_Windows)) {
-					try {
-						encryptedVal = BitwiseOperations.ror_short (encryptedVal, rotateAmount);
-						encryptedVal = encryptedVal ^ 0x4B3F;
-						encryptedVal = BitwiseOperations.ror_short (encryptedVal, 11);
-						encryptedVal = encryptedVal ^ 0xFFFF;
-						encryptedVal = BitwiseOperations.ror_short (encryptedVal, 12);
+                if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
+                    Version.GetType() == typeof(Steam_14_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_14_3_0_Mac) ||
+                    Version.GetType() == typeof(Steam_14_3_1_Linux) ||
+                    Version.GetType() == typeof(Steam_14_3_1_Windows))
+                {
+                    try
+                    {
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
+                        encryptedVal = encryptedVal ^ 0x4B3F;
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, 11);
+                        encryptedVal = encryptedVal ^ 0xFFFF;
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, 12);
 
-						return (ushort)encryptedVal;
-					} catch {
-						return 0;
-					}
-				} else if (Version.GetType() == typeof(Steam_15_2_1_Windows)) {
-					try {
-						encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
-						encryptedVal = ~encryptedVal & 0xFFFF;
-						encryptedVal = BitwiseOperations.ror_short(encryptedVal, 12);
-						encryptedVal = encryptedVal ^ 0xFFFF;
-						encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
+                        return (ushort)encryptedVal;
+                    }
+                    catch
+                    {
+                        return 0;
+                    }
+                }
+                else if (Version.GetType() == typeof(Steam_15_2_1_Windows))
+                {
+                    try
+                    {
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
+                        encryptedVal = ~encryptedVal & 0xFFFF;
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, 12);
+                        encryptedVal = encryptedVal ^ 0xFFFF;
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
 
-						return (ushort)encryptedVal;
-					} catch {
-						return 0;
-					}
-				} else if (Version.GetType () == typeof(Steam_15_3_2_Mac) ||
-				           Version.GetType () == typeof(Steam_15_3_2_Windows)) {
-					try {
-						encryptedVal = BitwiseOperations.rol_short(encryptedVal, 9);
-						encryptedVal = ~encryptedVal & 0xFFFF;
-						encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
-						encryptedVal = ~encryptedVal & 0xFFFF;
-						encryptedVal = BitwiseOperations.ror_short(encryptedVal, 5);
+                        return (ushort)encryptedVal;
+                    }
+                    catch
+                    {
+                        return 0;
+                    }
+                }
+                else if (Version.GetType() == typeof(Steam_15_3_2_Mac) ||
+                         Version.GetType() == typeof(Steam_15_3_2_Windows))
+                {
+                    try
+                    {
+                        encryptedVal = BitwiseOperations.rol_short(encryptedVal, 9);
+                        encryptedVal = ~encryptedVal & 0xFFFF;
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
+                        encryptedVal = ~encryptedVal & 0xFFFF;
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, 5);
 
-						return (ushort)encryptedVal;
-					} catch {
-						return 0;
-					}
-				}
+                        return (ushort)encryptedVal;
+                    }
+                    catch
+                    {
+                        return 0;
+                    }
+                }
+                else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                           Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    /*
+ */
 
-				else {
-					return 0;
-				}
+                    encryptedVal = encryptedVal ^ 0x542e;
+                    encryptedVal = BitwiseOperations.rol_short(encryptedVal, 2);
+                    encryptedVal = encryptedVal ^ 0xdf2c;
+                    encryptedVal = ~encryptedVal & 0xffff;
+                    encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
+                    
+                    return (ushort)encryptedVal;
+                }
+                else {
+                    return 0;
+                }
 			}
+            set
+            {
+                int rotateAmount = ((PlayerAddress + PlayerOffsets.CA) & 0xf);
+                uint encryptedVal = value;
+                try
+                {
+                    encryptedVal = BitwiseOperations.rol_short(encryptedVal, rotateAmount);
+                    encryptedVal = ~encryptedVal & 0xffff;
+                    encryptedVal = encryptedVal ^ 0xdf2c;
+                    encryptedVal = BitwiseOperations.ror_short(encryptedVal, 2);
+                    encryptedVal = encryptedVal ^ 0x542e;
+                }
+                catch
+                {
+                    // TODO: Add exception here
+                }
+
+                PropertyInvoker.Set<ushort>(PlayerOffsets.CA, OriginalBytes, PlayerAddress, DatabaseMode, (ushort)encryptedVal);
+            }
 		}
 
 		public ushort PA {
 			get {
-				int rotateAmount = ((PlayerAddress + PlayerOffsets.PA) & 15);
-				uint encryptedVal = (uint)PropertyInvoker.Get<ushort> (PlayerOffsets.PA, OriginalBytes, PlayerAddress, DatabaseMode);
+                int rotateAmount = ((PlayerAddress + PlayerOffsets.PA) & 15);
+                uint encryptedVal = (uint)PropertyInvoker.Get<ushort>(PlayerOffsets.PA, OriginalBytes, PlayerAddress, DatabaseMode);
 
-				if (Version.GetType () == typeof(Steam_14_3_0_Linux) ||
-				    Version.GetType () == typeof(Steam_14_3_0_Windows) ||
-				    Version.GetType () == typeof(Steam_14_3_0_Mac) ||
-				    Version.GetType () == typeof(Steam_14_3_1_Linux) ||
-				    Version.GetType () == typeof(Steam_14_3_1_Windows)) {
-					try {
-						encryptedVal = BitwiseOperations.ror_short (encryptedVal, rotateAmount);
-						encryptedVal = encryptedVal ^ 0xB0F8;
+                if (Version.GetType() == typeof(Steam_14_3_0_Linux) ||
+                    Version.GetType() == typeof(Steam_14_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_14_3_0_Mac) ||
+                    Version.GetType() == typeof(Steam_14_3_1_Linux) ||
+                    Version.GetType() == typeof(Steam_14_3_1_Windows)) {
+                    try {
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
+                        encryptedVal = encryptedVal ^ 0xB0F8;
 
-						return (ushort)encryptedVal;
-					} catch {
-						return 0;
-					}
-				} else if (Version.GetType () == typeof(Steam_15_2_1_Windows)) {
-					try {
+                        return (ushort)encryptedVal;
+                    } catch {
+                        return 0;
+                    }
+                } else if (Version.GetType() == typeof(Steam_15_2_1_Windows)) {
+                    try {
                         encryptedVal = ~encryptedVal & 0xFFFF;
                         encryptedVal = BitwiseOperations.rol_short(encryptedVal, rotateAmount);
                         encryptedVal = ~encryptedVal & 0xFFFF;
                         encryptedVal = BitwiseOperations.ror_short(encryptedVal, 0xF);
                         encryptedVal = encryptedVal ^ 0x3639;
 
-						return (ushort)encryptedVal;
-					} catch {
-						return 0;
-					}
-				} else if (Version.GetType () == typeof(Steam_15_3_2_Mac) ||
-				           Version.GetType () == typeof(Steam_15_3_2_Windows)) {
-					try {
+                        return (ushort)encryptedVal;
+                    } catch {
+                        return 0;
+                    }
+                } else if (Version.GetType() == typeof(Steam_15_3_2_Mac) ||
+                           Version.GetType() == typeof(Steam_15_3_2_Windows)) {
+                    try {
                         encryptedVal = ~encryptedVal & 0xFFFF;
                         encryptedVal = BitwiseOperations.rol_short(encryptedVal, 6);
                         encryptedVal = encryptedVal ^ 0x75CB;
                         encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
 
-						return (ushort)encryptedVal;
-					} catch {
-						return 0;
-					}
-				} else {
+                        return (ushort)encryptedVal;
+                    } catch {
+                        return 0;
+                    }
+                } else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows)) {
+                    try
+                    {
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
+                        encryptedVal = encryptedVal ^ 0x4B3F;
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, 11);
+                        encryptedVal = ~encryptedVal & 0xFFFF;
+                        encryptedVal = BitwiseOperations.rol_short(encryptedVal, rotateAmount);
+
+                        return (ushort)encryptedVal;
+                    }
+                    catch
+                    {
+                        return 0;
+                    }
+                }else {
 					return 0;
 				}
 			}
+            set
+            {
+                uint encryptedVal = value;
+                int rotateAmount = ((PlayerAddress + PlayerOffsets.PA) & 0xf);
+                if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                {
+                    try
+                    {
+                        encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
+                        encryptedVal = ~encryptedVal & 0xFFFF;
+                        encryptedVal = BitwiseOperations.rol_short(encryptedVal, 11);
+                        encryptedVal = encryptedVal ^ 0x4B3F;
+                        encryptedVal = BitwiseOperations.rol_short(encryptedVal, rotateAmount);
+
+                        PropertyInvoker.Set<ushort>(PlayerOffsets.PA, OriginalBytes, PlayerAddress, DatabaseMode, (ushort)encryptedVal);
+                    }
+                    catch
+                    {
+                        // TODO: Add an exception here
+                    }
+                }
+            }
 		}
 
 		public ushort Weight {
 			get {
 				return PropertyInvoker.Get<ushort> (PlayerOffsets.Weight, OriginalBytes, PlayerAddress, DatabaseMode);
 			}
-		}
+            set
+            {
+                PropertyInvoker.Set<ushort>(PlayerOffsets.Weight, OriginalBytes, PlayerAddress, DatabaseMode, value);
+            }
+        }
 
 		public ushort Height {
 			get {
 				return PropertyInvoker.Get<ushort> (PlayerOffsets.Height, OriginalBytes, PlayerAddress, DatabaseMode);
 			}
+            set
+            {
+                PropertyInvoker.Set<ushort>(PlayerOffsets.Height, OriginalBytes, PlayerAddress, DatabaseMode, value);
+            }
 		}
 
 		public byte InternationalApps {

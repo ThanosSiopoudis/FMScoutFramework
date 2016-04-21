@@ -98,9 +98,8 @@ namespace FMScoutFramework.Core.Managers
 		public static byte[] ReadProcessMemory(int address, int length)
 		{
 			byte[] buffer = new byte[length];
-			if (address > fmProcess.BaseAddress) {
-				ProcessMemoryAPI.ReadProcessMemory (FMProcess.Process.Id, (ulong)address, (ulong)length, buffer);
-			}
+			if (ProcessMemoryAPI.ReadProcessMemory (FMProcess.Process.Id, (ulong)address, (ulong)length, buffer) == 0)
+				; // TODO: When things are mature enough, we should add an exception here
 			return buffer;
 		}
 		#endif
@@ -324,7 +323,8 @@ namespace FMScoutFramework.Core.Managers
 
         public static void WriteDateTime(DateTime value, int address)
         {
-			WriteInt32 (Converters.DateConverter.ToFmDateTime (value), address, true);
+            WriteInt16(value.DayOfYear, address);
+            WriteInt16(value.Year, address + 2);
         }
 
         public static void WriteInt16(int value, int address)
@@ -373,6 +373,12 @@ namespace FMScoutFramework.Core.Managers
             WriteProcessMemory(address, buffer, 4);
         }
 
+        public static void WriteFloat(float value, int address)
+        {
+            byte[] buffer = BitConverter.GetBytes(value);
+            WriteProcessMemory(address, buffer, 4);
+        }
+
         public static void WriteSByte(sbyte value, int address)
         {
             byte[] buffer = new byte[] { (byte)value };
@@ -382,6 +388,17 @@ namespace FMScoutFramework.Core.Managers
         public static void WriteString(byte[] value, int address)
         {
             WriteProcessMemory(address, value, 4);
+        }
+
+        public static void ResizeArray(int currentAddress, int newLength)
+        {
+            ResizeArray(currentAddress, 0x4, newLength);
+        }
+
+        public static void ResizeArray(int currentAddress, int objectLength, int newLength)
+        {
+            int addressOne = ProcessManager.ReadInt32(currentAddress);
+            ProcessManager.WriteInt32(addressOne + objectLength * newLength, currentAddress + 0x4);
         }
         #endregion
 
