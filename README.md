@@ -1,15 +1,15 @@
 # FMScoutFramework  
 [![Build Status](https://travis-ci.org/ThanosSiopoudis/FMScoutFramework.svg)](https://travis-ci.org/ThanosSiopoudis/FMScoutFramework)
 
-FMScoutFramework is a C#.NET/Mono Framework that enables you to create your own assistant tools / editors for Football Manager. It supports both FM2014 and FM2015
+FMScoutFramework is a C#.NET/Mono Framework that enables you to create your own assistant tools / editors for Football Manager. It supports FM2014, FM2015 and FM2016
 
 ## Project Setup
 
 Clone the project in your favourite github client
-You will need [MonoDevelop](http://monodevelop.com) if you develop your application for all platforms (Windows, OS X, Linux) or Microsoft Visual Studio if you develop just for windows. The client requirements will be the Mono framework for apps developed in MonoDevelop, or the .NET Framework for Visual Studio apps.
+You will need [MonoDevelop](http://monodevelop.com) or [Xamarin](https://www.xamarin.com/download-it) if you develop your application for all platforms (Windows, OS X, Linux) or Microsoft Visual Studio if you develop just for windows. The client requirements will be the Mono framework for apps developed in Xamarin / MonoDevelop, or the .NET Framework for Visual Studio apps.
 
-### Monodevelop Settings
-1. Create your new MonoDevelop Solution
+### Xamarin / Monodevelop Settings
+1. Create your new Xamarin / MonoDevelop Solution
 2. You can clone this repository and add it as a submodule in your own git tree, or just checkout the latest.
 3. Add the FMScoutFramework project to your solution.
 4. Expand your own project, and right click on `References`
@@ -74,14 +74,12 @@ var clubs = (from c in fmCore.Clubs
 ```
 
 ## Currently pending
-* Add/Verify entity offsets for 15.3.2 Windows
-* Add support for 15.3.2 Mac
-* Add support for 15.3.2 Linux
+* Add Offsets for FM2016 OS X
 * Add a bunch of properties for the entities already implemented
 * Add a LOT of entities and properties for objects we have their main addresses for (look in 15.3.2 Windows version file)
 
 ## Contributing changes
-We need more devs and support! Imagine all the tools you could create for FM2014/FM2015/FM2016(??) if everything was already implemented!
+We need more devs and support! Imagine all the tools you could create for FM2014/FM2015/FM2016 if everything was already implemented!
 * Fork the project, make/test your changes and send a Pull Request!
 * Alternatively, bug reporting is vital! Use the Github's Issues page to do that!
 
