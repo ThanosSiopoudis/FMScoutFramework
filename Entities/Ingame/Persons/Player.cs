@@ -217,7 +217,8 @@ namespace FMScoutFramework.Core.Entities.InGame
                     }
                 }
                 else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
-                           Version.GetType() == typeof(Steam_16_3_1_Windows))
+                         Version.GetType() == typeof(Steam_16_3_1_Windows) ||
+                         Version.GetType() == typeof(Steam_16_3_2_Windows))
                 {
                     /*
  */
@@ -298,7 +299,9 @@ namespace FMScoutFramework.Core.Entities.InGame
                         return 0;
                     }
                 } else if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
-                    Version.GetType() == typeof(Steam_16_3_1_Windows)) {
+                           Version.GetType() == typeof(Steam_16_3_1_Windows) ||
+                           Version.GetType() == typeof(Steam_16_3_2_Windows))
+                {
                     try
                     {
                         encryptedVal = BitwiseOperations.ror_short(encryptedVal, rotateAmount);
@@ -322,7 +325,8 @@ namespace FMScoutFramework.Core.Entities.InGame
                 uint encryptedVal = value;
                 int rotateAmount = ((PlayerAddress + PlayerOffsets.PA) & 0xf);
                 if (Version.GetType() == typeof(Steam_16_3_0_Windows) ||
-                    Version.GetType() == typeof(Steam_16_3_1_Windows))
+                    Version.GetType() == typeof(Steam_16_3_1_Windows) ||
+                    Version.GetType() == typeof(Steam_16_3_2_Windows))
                 {
                     try
                     {
