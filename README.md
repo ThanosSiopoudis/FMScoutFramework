@@ -1,3 +1,6 @@
+# NEWER VERSION OF THIS PROJECT IS AVAILABLE HERE (FM22)
+(But not being maintained, so feel free to pick it up): https://github.com/AppCakeLtd/FMScoutFramework
+
 # FMScoutFramework  
 [![Build Status](https://travis-ci.org/ThanosSiopoudis/FMScoutFramework.svg)](https://travis-ci.org/ThanosSiopoudis/FMScoutFramework)
 
